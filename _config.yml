@@ -27,7 +27,7 @@ google_analytics: UA-123645374-1
 
 collections:
   - webdev
- 
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
