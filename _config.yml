@@ -26,7 +26,8 @@ github_comments_repository: 6r0k3d/6r0k3d.github.io
 google_analytics: UA-123645374-1
 
 collections:
-  - webdev
+  webdev:
+    output: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

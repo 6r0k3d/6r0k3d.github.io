@@ -1,8 +1,11 @@
 ---
-title: Getting Started with Jekyll and Github Pages
+title: Jekyll and Github
+description: How to integrate Jekyll with Github Pages
+link: Getting Started
 author: gr0k
 layout: post
 github_comments_issueid: 1
+permalink: /webdev/gettingstarted.html
 ---
 
 This is a walkthrough on building a static website from scratch using Github Pages and Jekyll.
@@ -13,7 +16,7 @@ While working on my [OSCP](https://offensive-security.com) certification, I foun
 
 I googled the documentation for [Github Pages](https://pages.github.com), set up my repo, and followed the link at the end to get started with [Jekyll](https://jekyllrb.com/docs/quickstart/), and quickly found that the Quick Start instructions weren't enough to understand what was happening. Both sites are pretty light on directions, and while their docs layout the basics for their frameworks, they don't adequately describe how the two integrate together. This made it challenging to get up and running. I didn't feel like I had the understanding I needed to easily develop what I wanted.
 
-I did some more digging, found a couple walkthroughs to help get started, and ran head first into every possible wall. 
+I did some more digging, found a couple walkthroughs to help get started, and ran head first into every possible wall.
 
 Figuring I wasn't the only one with these problems, I worked through my hurdles and documented each step. I wanted to layout the challenges I faced and the steps I took to hopefully make it easier for someone else trying to get started.
 
@@ -48,7 +51,7 @@ I tested all of the following on a new Ubuntu 18.04 system. It was a fresh VM wi
 
 ### System Updates
 
-First, make sure your repositories are up to date: 
+First, make sure your repositories are up to date:
 
 `sudo apt update && sudo apt upgrade`
 
@@ -149,7 +152,7 @@ Configuration file: /home/smith/Desktop/demo/_config.yml
             Source: /home/smith/Desktop/demo
        Destination: /home/smith/Desktop/demo/_site
  Incremental build: disabled. Enable with --incremental
-      Generating... 
+      Generating...
                     done in 0.452 seconds.
  Auto-regeneration: enabled for '/home/smith/Desktop/demo'
     Server address: http://127.0.0.1:4000/
@@ -248,7 +251,7 @@ From your repository, click the `Clone or download` button to get your repositor
 
 ![Repo URL](/assets/images/1/repo.jpg)
 
-After your first commit, you won't need to specify `-u origin master` each time, you can just type `git push` to commit your changes. 
+After your first commit, you won't need to specify `-u origin master` each time, you can just type `git push` to commit your changes.
 
 This will make your site live. You can visit it by typing `<user name>.github.io`  into your web browser. It might take a few minutes to show up when you first set up, but future changes will happen much faster.
 
@@ -260,13 +263,13 @@ I won't get into the specifics of building pages for your site, the Jekyll docs 
 
 ## Markdown
 
-Pages can be written as HTML or Markdown. Markdown is a markup language that gets converted to HTML. It makes it so you don't have to worry about managing all your HTML tags while you write, and makes it easier to read as you put it together. 
+Pages can be written as HTML or Markdown. Markdown is a markup language that gets converted to HTML. It makes it so you don't have to worry about managing all your HTML tags while you write, and makes it easier to read as you put it together.
 
 I used the [Typora](https://typora.io/) editor to put this post together. It's the first markdown editor I've used and I found it super intuitive to pick up.  Another option I've seen recommended is the [Atom](https://atom.io/) editor.
 
 ## Front Matter
 
-Front matter allows you to specify specific attributes for your pages. Front matter utilizes YAML (YAML ain't Markup Language) to specify various attributes that get applied to a document. This allows you to set options such as the pages title and what `_layout` should be applied to the page. The Jekyll [docs](https://jekyllrb.com/docs/frontmatter/) explain all the options in more detail. 
+Front matter allows you to specify specific attributes for your pages. Front matter utilizes YAML (YAML ain't Markup Language) to specify various attributes that get applied to a document. This allows you to set options such as the pages title and what `_layout` should be applied to the page. The Jekyll [docs](https://jekyllrb.com/docs/frontmatter/) explain all the options in more detail.
 
 Front matter goes at the top of your markup, blocked off by three triple-dashed lines, like so:
 
@@ -291,7 +294,7 @@ markdown: kramdown
 theme: <Github theme>
 ```
 
-The Github themes can be found [here](https://github.com/pages-themes), and the instructions for how to apply them are included in their respective README documents. 
+The Github themes can be found [here](https://github.com/pages-themes), and the instructions for how to apply them are included in their respective README documents.
 
 When selecting a new theme make sure the front matter layout options for your pages are specified correctly. If you're using a Github theme, you can see the available layouts for your selected theme in their respective _layouts repository. For example, the hacker theme layouts are [here](https://github.com/pages-themes/hacker/tree/master/\_layouts). If you specify a layout that doesn't exist as part of your theme, you'll see an error message when you start your server locally as show below. To fix the Github Metadata error shown below, read the instructions [here](#6-no-github-api-authentication).
 
@@ -301,7 +304,7 @@ Configuration file: /home/smith/6r0k3d/_config.yml
             Source: /home/smith/6r0k3d
        Destination: /home/smith/6r0k3d/_site
  Incremental build: disabled. Enable with --incremental
-      Generating... 
+      Generating...
    GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
      Build Warning: Layout 'page' requested in about.md does not exist.
      Build Warning: Layout 'home' requested in index.md does not exist.
@@ -333,11 +336,11 @@ You could deploy with [Disqus](https://disqus.com). Once you sign up, it looks l
 
 ### 1. Abstraction
 
-The hardest part about getting started for me was figuring out where everything was and how all the components worked together. I wanted to use a different theme out the gate, but trying to figure out where all the different files were located and how they functioned together was challenging.  This was by far the most difficult part of getting everything working. 
+The hardest part about getting started for me was figuring out where everything was and how all the components worked together. I wanted to use a different theme out the gate, but trying to figure out where all the different files were located and how they functioned together was challenging.  This was by far the most difficult part of getting everything working.
 
-By default, Jekyll uses gem-based themes. This means when you create a new project, you won't see the `assets`, `_layouts`, `_includes`, and `_sass` directories. The intent is to make your life easier, abstracting away the work of setting up layouts, while allowing you to benefit when the theme maintainers push updates, but because I didn't understand the framework, hiding this functionality led to a lot more work getting started. 
+By default, Jekyll uses gem-based themes. This means when you create a new project, you won't see the `assets`, `_layouts`, `_includes`, and `_sass` directories. The intent is to make your life easier, abstracting away the work of setting up layouts, while allowing you to benefit when the theme maintainers push updates, but because I didn't understand the framework, hiding this functionality led to a lot more work getting started.
 
-If you followed the instructions at the start on setting up non-root gems, you can find gem based theme files in `~/gems/gems/<theme name>` . You can over ride anything set in these files by having a copy in your local Jekyll directory. For example, if you wanted to make modifications to your `default.html` gem-based theme layout, copy  `~/gems/gems/<theme>/_layouts/default.html` to your local Jekyll directory at `<jekyll directory>/_layouts`. 
+If you followed the instructions at the start on setting up non-root gems, you can find gem based theme files in `~/gems/gems/<theme name>` . You can over ride anything set in these files by having a copy in your local Jekyll directory. For example, if you wanted to make modifications to your `default.html` gem-based theme layout, copy  `~/gems/gems/<theme>/_layouts/default.html` to your local Jekyll directory at `<jekyll directory>/_layouts`.
 
 Your local changes will override the gem based theme settings. It gives you more control, but means you won't benefit when the theme maintainer pushes updates (but I imagine this is pretty rare for the Github provided themes). I'll show an example of this later when I show how I set up comments for this blog.
 
@@ -351,9 +354,9 @@ This drove me up the wall when I first started. I followed a couple guides and p
 
 ### 3. Git "gh-pages" branch
 
-When exploring reasons why my website wasn't displaying changes, one thing I realized was the walkthrough I was following was pushing changes to the gh-pages branch of their repo. I didn't realize at the time this branch had special meaning and thought this might be why my changes were not going live. 
+When exploring reasons why my website wasn't displaying changes, one thing I realized was the walkthrough I was following was pushing changes to the gh-pages branch of their repo. I didn't realize at the time this branch had special meaning and thought this might be why my changes were not going live.
 
-Using the gh-pages branch is only necessary if you are building a project site. If you are making a personal site, you can push your commits to the master branch without a problem. 
+Using the gh-pages branch is only necessary if you are building a project site. If you are making a personal site, you can push your commits to the master branch without a problem.
 
 ### 4. Non-Root Gems
 
@@ -418,7 +421,7 @@ gem "github-pages", group: :jekyll_plugins
 
 ### 6. No GitHub API Authentication
 
-I ran into this error when I ran `bundle exec jekyll serve --watch`. It prevents `--watch` from functioning properly, meaning you have to restart your server each time you make changes. It's a [closed issue](https://github.com/github/pages-gem/issues/399) on the pages-gem repo, but you still have to add the fix yourself. 
+I ran into this error when I ran `bundle exec jekyll serve --watch`. It prevents `--watch` from functioning properly, meaning you have to restart your server each time you make changes. It's a [closed issue](https://github.com/github/pages-gem/issues/399) on the pages-gem repo, but you still have to add the fix yourself.
 
 Adding
 
@@ -432,7 +435,7 @@ to my `_config.yml` file fixed the issue for me.
 
 ### 7. Managing Assets (images / js)
 
-This took a moment to figure out. I wanted to keep images for a posts in their own folder vs. putting all images togehter under one folder. The problem I had was when using Typora's dropdown interface to insert images, the absolute path failed when I ran the server locally. 
+This took a moment to figure out. I wanted to keep images for a posts in their own folder vs. putting all images togehter under one folder. The problem I had was when using Typora's dropdown interface to insert images, the absolute path failed when I ran the server locally.
 
 To get around this, you have to use a relative path when your're typing your blog posts.
 
@@ -468,7 +471,7 @@ Click [here](#git) to go back to the Installation section.
 
 ## What are Gems and Bundler?
 
-Gems are Ruby software packages (libraries). These are analogous to Python libraries you install with pip. Code libraries allow programmers to easily re-use code in development so they don't have to write functionality from scratch. In Ruby, you use Gems to manage these libraries. 
+Gems are Ruby software packages (libraries). These are analogous to Python libraries you install with pip. Code libraries allow programmers to easily re-use code in development so they don't have to write functionality from scratch. In Ruby, you use Gems to manage these libraries.
 
 To use Gems, you need to install the RubyGems library. If you updated your software packages at the [beginning](#system-updates), then RubyGems was installed automatically when you installed Ruby. RubyGems comes built in with Ruby version 1.9.* and above.
 
@@ -510,7 +513,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
 The first line of the file defines the source repository so Bundler knows where to find gems, and the remaining lines control which gems and what versions get used for this project.
 
-If you make changes to your Gemfile, run `bundle update` afterwards to apply them. Gems will be installed at `$HOME/gems` if you followed the Package Install directions above. 
+If you make changes to your Gemfile, run `bundle update` afterwards to apply them. Gems will be installed at `$HOME/gems` if you followed the Package Install directions above.
 
 Click [here](#what-is-jekyll?) to go back to the Jekyll overview.
 
