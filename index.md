@@ -4,3 +4,8 @@
 
 layout: home
 ---
+
+{% for item in site.webdev %}
+  <h2 style="display:inline">{{ item.title }}</h2><p style="display:inline"> - {{ item.description }}</p>
+  <p><a href="{{ item.url }}">{{ item.link }}</a></p>
+{% endfor %}
