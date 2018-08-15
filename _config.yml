@@ -25,6 +25,11 @@ github_comments_repository: 6r0k3d/6r0k3d.github.io
 
 google_analytics: UA-123645374-1
 
+header_pages:
+  - index.md
+  - about.md
+  - privacy.md
+
 collections:
   webdev:
     output: true
