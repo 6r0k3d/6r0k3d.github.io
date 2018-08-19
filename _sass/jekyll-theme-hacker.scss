@@ -29,15 +29,10 @@ body {
 
 /* General & 'Reset' Stuff */
 
-.container {
+#header-container {
   width: 90%;
   max-width: 1000px;
   margin: 0 auto;
-}
-
-section {
-  display: block;
-  margin: 0 0 20px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,7 +54,6 @@ header {
   width: 100%;
   border-bottom: 1px dashed $conifer; //header;
   padding: 20px 0;
-  margin: 0 0 40px 0;
 }
 
 header h1 {
@@ -95,11 +89,30 @@ header h2 {
 
 /* Main Content
 */
+#toc{
+  display: flex;
+  min-height: 800px;
+}
+
+#main_nav {
+  width: 20%;
+  margin: 0px 0 0 20px;
+  padding-top: 10px;
+}
 
 #main_content {
-  width: 100%;
+  width: 80%;
+  // margin-right: auto;
+  border-left: 1px dashed $conifer; //header;
   -webkit-font-smoothing: antialiased;
 }
+
+#body-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 10px 0px 0px 10px;
+}
+
 section img {
   max-width: 100%
 }
@@ -201,6 +214,13 @@ hr {
   color: #b5e853;
 }
 
+footer {
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-top: 1px dashed $conifer; //header;
+  padding: 20px 0;
+}
+
 /* Buttons
 */
 
@@ -241,6 +261,15 @@ hr {
 /* Links
    a, a:hover, a:visited
 */
+
+a.header_link {
+  font-weight: normal;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  color: #b5e853;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(181, 232, 83, 0.1), 0 0 10px rgba(181, 232, 83, 0.1);
+}
 
 a {
   color: #63c0f5;
