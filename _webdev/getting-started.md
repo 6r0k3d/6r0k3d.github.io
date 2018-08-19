@@ -1,5 +1,5 @@
 ---
-title: Jekyll and Github
+title: Integrating Jekyll and Github Pages
 description: How to integrate Jekyll with Github Pages
 link: Getting Started
 author: gr0k

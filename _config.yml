@@ -33,6 +33,8 @@ header_pages:
 collections:
   webdev:
     output: true
+    link: Web Development
+    permalink: /:collection/:name
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

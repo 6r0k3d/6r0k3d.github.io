@@ -17,10 +17,27 @@
   <body>
     {%- include header.html -%}
 
-    <div class="container">
-      <section id="main_content">
-        {{ content }}
-      </section>
+    <div id="toc">
+
+      <nav id="main_nav">
+        <h1 style="font-size:30px">Guides</h1>
+        {% for collection in site.collections %}
+          {% if collection.label != "posts" %}
+            <ul>
+              <li><h2><a class="header_link" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}</a></h2></li>
+            </ul>
+          {% endif %}
+        {% endfor %}
+      </nav>
+
+      <div id="main_content">
+        <section id="body-container">
+          {{ content }}
+        </section>
+      </div>
+
     </div>
+
+    {% include footer.html %}
   </body>
 </html>
