@@ -91,6 +91,7 @@ header h2 {
 */
 #toc{
   display: flex;
+  display: -webkit-flex;
   min-height: 800px;
 }
 
@@ -103,7 +104,8 @@ header h2 {
 #main_content {
   width: 80%;
   // margin-right: auto;
-  border-left: 1px dashed $conifer; //header;
+  border-top: 1px dashed $conifer;
+  border-left: 1px dashed $conifer;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -111,6 +113,14 @@ header h2 {
   width: 90%;
   max-width: 1000px;
   margin: 10px 0px 0px 10px;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    #toc {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
 }
 
 section img {
