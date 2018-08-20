@@ -108,6 +108,7 @@ header h2 {
 #main_content {
   width: 80%;
   border-left: 1px dashed $conifer;
+  border-bottom: 1px dashed $conifer;
   -webkit-font-smoothing: antialiased;
   flex-grow: 128;
 }
