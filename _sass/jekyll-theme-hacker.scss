@@ -53,7 +53,7 @@ header {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
   border-bottom: 1px dashed $conifer; //header;
-  padding: 20px 0;
+  padding: 20px 20px;
 }
 
 header h1 {
@@ -89,24 +89,26 @@ header h2 {
 
 /* Main Content
 */
-#toc{
+#main_flex{
   display: flex;
-  display: -webkit-flex;
+  justify-content: flex-start;
   min-height: 800px;
 }
 
 #main_nav {
-  width: 20%;
-  margin: 0px 0 0 20px;
+  // width: 20%;
+  //margin: 0px 0 0 20px;
   padding-top: 10px;
+  padding-left: 20px;
+  border-bottom: 1px dashed $conifer;
+  flex-grow: 1;
 }
 
 #main_content {
   width: 80%;
-  // margin-right: auto;
-  border-top: 1px dashed $conifer;
   border-left: 1px dashed $conifer;
   -webkit-font-smoothing: antialiased;
+  flex-grow: 128;
 }
 
 #body-container {
@@ -116,10 +118,13 @@ header h2 {
 }
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media (max-width: 600px) {
-    #toc {
+@media screen and (max-width: 600px) {
+    #main_flex {
       -webkit-flex-direction: column;
       flex-direction: column;
+    }
+    #main_content{
+      border-left:0;
     }
 }
 
@@ -227,7 +232,7 @@ hr {
 footer {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
-  border-top: 1px dashed $conifer; //header;
+  //border-top: 1px dashed $conifer; //header;
   padding: 20px 0;
 }
 
