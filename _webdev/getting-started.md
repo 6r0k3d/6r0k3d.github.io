@@ -6,6 +6,7 @@ author: gr0k
 layout: post
 github_comments_issueid: 1
 permalink: /webdev/gettingstarted.html
+date: 7 Aug 2018
 ---
 
 This is a walkthrough on building a static website from scratch using Github Pages and Jekyll.
