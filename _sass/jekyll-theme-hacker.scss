@@ -89,8 +89,9 @@ header h2 {
 
 /* Main Content
 */
-#toc{
+#main_flex{
   display: flex;
+  justify-content: flex-start;
   min-height: 800px;
 }
 
@@ -102,8 +103,7 @@ header h2 {
 
 #main_content {
   width: 80%;
-  // margin-right: auto;
-  border-left: 1px dashed $conifer; //header;
+  border-left: 1px dashed $conifer;
   -webkit-font-smoothing: antialiased;
 }
 
