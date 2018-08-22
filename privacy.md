@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Privacy Policy
+description: How hack -h protects your personal information 
 permalink: /privacy/
 ---
 
