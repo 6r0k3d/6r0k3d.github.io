@@ -35,6 +35,10 @@ collections:
     output: true
     link: Web Development
     permalink: /:collection/:name
+  exdev:
+    output: true
+    link: Exploit Development
+    permalink: /:collection/:name
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
