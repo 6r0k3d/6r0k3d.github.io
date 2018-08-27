@@ -9,13 +9,13 @@ Some time ago I found the Cisco Talos Intelligence Group's blog post called [How
 
 Working through and solving these problems is good, but documenting them and keeping them as a resource to reach back to is better. I've lost count of the hours I've wasted trying to dig up the solution to a problem I'd solved before. So why not keep all the information in one convenient spot?
 
-What follows are my write ups walking through each of the steps. The purpose of the exercises is to struggle with the material and learn what's happening, as the Talos group noted:
+The purpose of the exercises is to struggle with the material and learn what's happening. As the Talos group noted:
 
 > All the answers are on google if you get stuck (but don't cheat, it's not worth it).
 
-Use this as a resource when you get stuck, use this to compare your solution when you're done, but to maximize what you learn, struggle with the concepts as much as possible. The understanding that comes as you get through [The Cliffs of Despair](https://www.thinkful.com/blog/why-learning-to-code-is-so-damn-hard/) is worth the effort.
+ Use this as a resource when you get stuck, use this to compare your solution when you're done, but to maximize what you learn, work with the problems as much as possible. The understanding that comes as you get through [The Cliffs of Despair](https://www.thinkful.com/blog/why-learning-to-code-is-so-damn-hard/) is worth the effort.
+
 
   {% for item in site.exdev %}
-
     <h2 style="display:inline"><a class="header_link" href="{{ item.url }}">{{ item.link }}</a></h2><p style="display:inline"> - {{ item.description }}</p>
   {% endfor %}
