@@ -1,37 +1,52 @@
 ---
 title: Setup for Gera's Insecure Programming Challenges
-description: Getting Started
-link: Gera's Challenges Setup
+description: Getting Setup
+link: Gera's Insecure Programming Challenges
 author: gr0k
 layout: post
 github_comments_issueid: 2
 permalink: /exdev/intro.html
 date: 27 Aug 2018
 ---
+Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming). 
 
 * TOC
 {:toc}
-## What are they?
+## WARNING
 
-These programming challenges were made so you can learn how to exploit buffer overflows. The Talos link points to an old web page that no longer exists, but all the challenges have been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming).
+The instructions below will put your computer into a vulnerable state. It turns off certain defensive measures and introduces vulnerable code. Don't do this on your home workstation. Build a VM. I'll have an environment build guide shortly.
 
 ## How to get started
 
-All you have to do is copy the code block below and run it in your console.
+All you have to do is copy the code block below and run it in your console. It's always a good idea to understand what a piece of code is doing before you run it, so I've explained each piece below.
 
-This code block clones the repository and changes into the newly created directory.
+First it clones the InsecureProgramming repository and changes into the newly created directory.
 
-It then uses a [Here Document](http://tldp.org/LDP/abs/html/here-docs.html) to create a bash script called `compile.sh`. This script is tailored to the InsecureProgramming project folder you just cloned. It gets a listing of all the source code files in the exercises directory, gets the file names by themselves (it cuts off everything from the period to the end of the filename), creates a bin directory if it doesn't exist, and then compiles all the files into bin.
+It then uses a [Here Document](http://tldp.org/LDP/abs/html/here-docs.html) to create a bash script called `compile.sh`. This script is tailored to the InsecureProgramming project folder you just cloned. It gets a listing of all the source code files in the exercises directory, gets the file names by themselves (cutting off everything from the period to the end of the filename), creates a bin directory if it doesn't exist, and then compiles all the files into bin.
 
-The scripts compiles the programs with no stack protection (`-fno-stack-protector`) and makes the stack executable (`-z execstack`). This will ensure we can do buffer overflows, and that any shellcode we write into these programs will get executed. The `-g` switch  is included to compile with debugging information and the `-o` switch sets the file output location and name.
+The script compiles the programs with no stack protection, `-fno-stack-protector`, and makes the stack executable, `-z execstack`. This will ensure we can do buffer overflows, and that any shellcode we write into these programs will get executed. The `-g` switch  is included to compile with debugging information and the `-o` switch sets the file output location and name.
+
+If you don't use `-fno-stack-protector`, you'll get this message when trying to execute a buffer overflow:
+
+```bash
+(gdb) run stack2
+Starting program: /home/smith/Desktop/InsecureProgramming/bin/stack1 stack2
+buf: ffffdd30 cookie: ffffdd2c
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+*** stack smashing detected ***: /home/smith/Desktop/InsecureProgramming/bin/stack1 terminated
+
+Program received signal SIGABRT, Aborted.
+```
+
+
 
 The `chmod +x` command makes the `compile.sh` script executable.
 
-When you run the below code block, you are going to get a ton of `warning` and `note` messages in your console. You can safely ignore these, you'll have working executable binaries in your bin directory. If you'd like to know more about those messages, you can read the note below.
+The last line of the code block turns off **A**ddress **S**pace **L**ayout **R**andomization (ASLR). This is a defensive measure implemented in the early 2000s that changes the location in memory that a program is loaded to every time the program runs. This makes exploitation more difficult since you can't hard code memory addresses. There are work arounds, but to get started, we can just disable it for now.
+
+When you run the below code block, you are going to get a ton of `warning` and `note` messages from the compiler. You can safely ignore these, you'll have working executable binaries in your bin directory. If you'd like to know more about those messages, you can read the details [below](#compilation-warnings-and-notes).
 
 Once you've got your compiled executables, you're ready to get started!
-
-# sudo echo 0 > /proc/sys/kernel/randomize_va_space
 
 ```bash
 git clone https://github.com/gerasdf/InsecureProgramming.git
@@ -56,6 +71,7 @@ done
 EOF
 chmod +x compile.sh
 ./compile.sh
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 ```
 
 ## Compilation Warnings and Notes
