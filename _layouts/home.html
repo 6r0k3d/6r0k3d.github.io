@@ -20,7 +20,7 @@ layout: default
         </h3>
 
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <small><p>{{ post.date | date: "%-d %B %Y" }}</p></small>
+        <small>{{ post.date | date: "%-d %B %Y" }}</small>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
