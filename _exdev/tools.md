@@ -15,7 +15,7 @@ I wanted to include all the tools I used while working on these problems in once
 {:toc}
 ## GNU Debugger (GDB)
 
-GDB lets us look at a program in memory. I'll discuss a few common commands needed to get started.
+GDB lets us look at a program in memory. I'll discuss a few common commands needed to get started. This is by no means comprehensive, just a highlight of commands I think are important to know in order to get started.
 
 ### Starting GDB
 
@@ -23,7 +23,7 @@ Enter `gdb -q <program name>`  to start the debugger. The `-q` suppresses the li
 
 ### Running a Program
 
-To start a program, all you have to do is type `run`. This will tell GDB to execute the program you specified when you started it.
+To start a program, type `run`. This will tell GDB to execute the program you specified when you started it.
 
 To load a different program after you've started, use `file <path to program>`.
 
@@ -80,7 +80,22 @@ Num     Type           Disp Enb Address            What
 2       breakpoint     keep y   0x00000000004005be in main at ./exercises/stack3.c:5
 ```
 
- 
+### Resuming Execution
+
+After hitting a breakpoint, there are a few ways to resume code execution. The three I'll highlight are `continue`, `next`, and `step`.
+
+`Continue` resumes normal execution, running until either the program ends or the something else causes it to stop again, such as user input or another breakpoint.
+
+`Step`  runs code until it reaches the next line of source code for which there is debugging information. It will step into functions  
+
+### GDB Cheat sheet
+
+```bash
+run
+
+```
+
+
 
 ## Perl
 
