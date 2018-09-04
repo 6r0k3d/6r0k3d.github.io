@@ -15,7 +15,7 @@ I wanted to include all the tools I used while working on these problems in once
 {:toc}
 ## GNU Debugger (GDB)
 
-GDB lets us look at a program in memory. I'll discuss a few common commands needed to get started. This is by no means comprehensive, just a highlight of commands I think are important to know in order to get started.
+GDB lets us look at a program in memory. I'll discuss a few common commands needed to get started. This is by no means comprehensive, just a highlight of commands I think are important to know in order to get started. The full documentation can be found [here](https://sourceware.org/gdb/onlinedocs/gdb/index.html#SEC_Contents).
 
 ### Starting GDB
 
@@ -86,7 +86,57 @@ After hitting a breakpoint, there are a few ways to resume code execution. The t
 
 `Continue` resumes normal execution, running until either the program ends or the something else causes it to stop again, such as user input or another breakpoint.
 
-`Step`  runs code until it reaches the next line of source code for which there is debugging information. It will step into functions  
+`Step` runs until it reaches the next line of source code for which there is debugging information. If the next line of code has a function call, step will stop execution inside this called function (assuming debugging information is available).
+
+`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function.
+
+### Inspecting Registers
+
+Registers are components in the CPU that store data for immediate use. This data can be general purpose, like values for a function, the addresses locating a segment of a programs memory, such as the start/end of the stack, or the instruction pointer, which holds the address for the next instruction the CPU will execute.
+
+`info registers` displays all register names and values.
+
+`info register <register name>` displays only the named register(s).
+
+GDB displays the registers in two columns. The first is the register data in raw format (hex), and the second is the register's natural format. The natural format varies by register, as explained in [this Stack Overflow answer](https://stackoverflow.com/a/27990499/1101802).
+
+### Examining Memory
+
+In order to see what is stored in various variables or sections of a programs memory, we e**X**amine it with `x`. 
+
+The syntax for the command is: `x/nfu <memory location>`
+
+**n**, **f**, and **u** are optional format parameters to specify how memory should be displayed, and **\<memory location>** is the starting address of memory to display.
+
+**u** is the unit size of memory to display, and can be set to *bytes* with **b**, *halfword* (two bytes) with **h**, *word* (four bytes) with **w**, and *giant* (eight bytes) with **g**.
+
+**n** is the number of times to repeat the printing of the memory unit.
+
+**f** is the format to print memory, **x** for hex, **d** for decimal, **s** for string, and **i** for instruction (when printing assembly).
+
+The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`. 
+
+#### Examine 32 bytes starting from a Register
+
+```bash
+(gdb) x/32xw $rsp
+0x7fffffffdd40:	0xff000000	0x00000000	0x00000000	0x00000000
+0x7fffffffdd50:	0x00000000	0x00000000	0x00000000	0x00000000
+0x7fffffffdd60:	0x00000001	0x00000000	0x0040065d	0x00000000
+0x7fffffffdd70:	0x00000000	0x00000000	0x00000000	0x00000000
+0x7fffffffdd80:	0x00400610	0x00000000	0x004004c0	0x00000000
+0x7fffffffdd90:	0xffffde80	0x00007fff	0x00000000	0x00000000
+0x7fffffffdda0:	0x00400610	0x00000000	0xf7a2d830	0x00007fff
+0x7fffffffddb0:	0x00000000	0x00000000	0xffffde88	0x00007fff
+```
+
+#### Examine 16 Halfwords starting from a Memory Address
+
+```bash
+(gdb) x/16xh 0x7fffffffdd40
+0x7fffffffdd40:	0x0000	0xff00	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000
+0x7fffffffdd50:	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000
+```
 
 ### GDB Cheat sheet
 
