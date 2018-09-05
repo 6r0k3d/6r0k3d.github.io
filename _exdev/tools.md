@@ -15,7 +15,7 @@ I wanted to include all the tools I used while working on these problems in once
 {:toc}
 ## GNU Debugger (GDB)
 
-GDB lets us look at a program in memory. I'll discuss a few common commands needed to get started. This is by no means comprehensive, just a highlight of commands I think are important to know in order to get started. The full documentation can be found [here](https://sourceware.org/gdb/onlinedocs/gdb/index.html#SEC_Contents).
+GDB lets us look at a program in memory. I cover a few common commands needed to get started, but this is by no means comprehensive list. The full documentation can be found [here](https://sourceware.org/gdb/onlinedocs/gdb/index.html#SEC_Contents).
 
 ### Starting GDB
 
@@ -25,17 +25,17 @@ Enter `gdb -q <program name>`  to start the debugger. The `-q` suppresses the li
 
 To start a program, type `run`. This will tell GDB to execute the program you specified when you started it.
 
-To load a different program after you've started, use `file <path to program>`.
+To load a different program after you've started GDB, use `file <path to program>`.
 
 ### Viewing Source Code
 
-If a program compiles with debugging information, you can view the source code in GDB with the `list` command. By default, GDB will show 10 lines of code. It's smart enough to know what line it displayed last, so repeating the list command will display the next ten lines of source code.
+If a program compiles with debugging information, you can view the source code in GDB with the `list` command. By default, GDB will show ten lines of code. GDB tracks what line it displayed last, so repeating the list command will display the next ten lines. Once GDB has displayed all source code, you will have to specify a line number if you want to see lines from a specific point.
 
 You can change the default number of lines displayed with `set listsize <count>`, and view the current setting with `show listsize`.
 
-If you specify a number with the command, `list <number>`, GDB will display the five lines of code before and after the specified line.
+If you specify a number with the command, `list <number>`, GDB will display the `listsize` number of lines, split evenly between preceding and following lines.
 
- If the program is not compiled with debugging information, you won't be able to view the source code in GDB or set breakpoints using line numbers:
+If the program is not compiled with debugging information, you won't be able to view the source code in GDB or set breakpoints using line numbers:
 
 ```bash
 smith (master) bin $ gdb -q stack1
@@ -88,21 +88,31 @@ After hitting a breakpoint, there are a few ways to resume code execution. The t
 
 `Step` runs until it reaches the next line of source code for which there is debugging information. If the next line of code has a function call, step will stop execution inside this called function (assuming debugging information is available).
 
-`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function.
+`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function. 
+
+To see additional control options, read more [here](https://sourceware.org/gdb/onlinedocs/gdb/Continuing-and-Stepping.html#Continuing-and-Stepping).
 
 ### Inspecting Registers
 
-Registers are components in the CPU that store data for immediate use. This data can be general purpose, like values for a function, the addresses locating a segment of a programs memory, such as the start/end of the stack, or the instruction pointer, which holds the address for the next instruction the CPU will execute.
+Registers are memory components in the CPU that store data the processor needs immediately. This data can be anything, from general purpose data like the values of a variable, to the addresses locating segments of a programs memory, such as the top and bottom of the stack. The most important register is the instruction pointer, which holds the address for the next instruction the CPU will execute. This is what we are trying to gain control over.
 
 `info registers` displays all register names and values.
 
+```bash
+(gdb) info registers
+rax            0x7fffffffdd40	140737488346432
+rbx            0x0	0
+...
+Output trimmed
+```
+
 `info register <register name>` displays only the named register(s).
 
-GDB displays the registers in two columns. The first is the register data in raw format (hex), and the second is the register's natural format. The natural format varies by register, as explained in [this Stack Overflow answer](https://stackoverflow.com/a/27990499/1101802).
+As shown above, GDB displays the registers in two columns. The first is the register data in raw format (hex), and the second is the register's natural format. The natural format varies by register, as explained in [this Stack Overflow answer](https://stackoverflow.com/a/27990499/1101802).
 
 ### Examining Memory
 
-In order to see what is stored in various variables or sections of a programs memory, we e**X**amine it with `x`. 
+In order to see what is stored in various variables or sections of a programs memory, we examine it with `x`. 
 
 The syntax for the command is: `x/nfu <memory location>`
 
@@ -114,7 +124,7 @@ The syntax for the command is: `x/nfu <memory location>`
 
 **f** is the format to print memory, **x** for hex, **d** for decimal, **s** for string, and **i** for instruction (when printing assembly).
 
-The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`. 
+The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable or function name, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`. 
 
 #### Examine 32 bytes starting from a Register
 
@@ -138,14 +148,63 @@ The memory location can be specified with a hex address or by using the *address
 0x7fffffffdd50:	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000	0x0000
 ```
 
-### GDB Cheat sheet
+#### Examine 2 Instructions starting at the Main Function
 
 ```bash
-run
-
+(gdb) x/2i &main
+   0x4005b6 <main>:	push   rbp
+   0x4005b7 <main+1>:	mov    rbp,rsp
 ```
 
+#### Setting Assembly Language Flavor
 
+There are two "flavors" of assembly language that gdb can use when examining memory/machine instructions, AT&T and Intel. AT&T syntax reads as `<instruction> <source> <destination>`, and includes percent signs all over the place. Intel reverses it, with `<instruction> <destination> <source>`. AT&T in my opinion is generally harder to read, and I always set GDB to use Intel's flavor.
+
+You can change the flavor in a given GDB session with the following:
+
+- `set disassembly-flavor att`
+
+- `set disassembly-flavor intel`
+
+- `show disassembly-flavor`
+
+You can set it permanently by adding the line for your preferred flavor to the gdbinit file in your home directory (if you don't have one, this will create it).
+
+```bash
+echo "set disassembly-flavor intel" >> ~/.gdbinit
+```
+
+You can see below a quick snapshot of the two:
+
+```bash
+# Intel Syntax
+(gdb) x/10i &main
+   0x4005b6 <main>:	push   rbp
+   0x4005b7 <main+1>:	mov    rbp,rsp
+   0x4005ba <main+4>:	sub    rsp,0x60
+   0x4005be <main+8>:	lea    rdx,[rbp-0x4]
+   0x4005c2 <main+12>:	lea    rax,[rbp-0x60]
+   0x4005c6 <main+16>:	mov    rsi,rax
+   0x4005c9 <main+19>:	mov    edi,0x400694
+   0x4005ce <main+24>:	mov    eax,0x0
+   0x4005d3 <main+29>:	call   0x400480 <printf@plt>
+   0x4005d8 <main+34>:	lea    rax,[rbp-0x60]
+   
+# AT&T Syntax
+(gdb) set disassembly-flavor att
+(gdb) x/10i &main
+   0x4005b6 <main>:	push   %rbp
+   0x4005b7 <main+1>:	mov    %rsp,%rbp
+   0x4005ba <main+4>:	sub    $0x60,%rsp
+   0x4005be <main+8>:	lea    -0x4(%rbp),%rdx
+   0x4005c2 <main+12>:	lea    -0x60(%rbp),%rax
+   0x4005c6 <main+16>:	mov    %rax,%rsi
+   0x4005c9 <main+19>:	mov    $0x400694,%edi
+   0x4005ce <main+24>:	mov    $0x0,%eax
+   0x4005d3 <main+29>:	callq  0x400480 <printf@plt>
+   0x4005d8 <main+34>:	lea    -0x60(%rbp),%rax
+
+```
 
 ## Perl
 
