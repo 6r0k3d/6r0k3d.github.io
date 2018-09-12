@@ -25,6 +25,8 @@ github_comments_repository: 6r0k3d/6r0k3d.github.io
 
 google_analytics: UA-123645374-1
 
+show_excerpts: true
+
 header_pages:
   - index.md
   - about.md
@@ -34,6 +36,10 @@ collections:
   webdev:
     output: true
     link: Web Development
+    permalink: /:collection/:name
+  exdev:
+    output: true
+    link: Exploit Development
     permalink: /:collection/:name
 
 # Exclude from processing.
