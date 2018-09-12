@@ -164,7 +164,7 @@ Configuration file: /home/smith/Desktop/demo/_config.yml
 
 If you open your browser and enter `127.0.0.1:4000` in the URL, your local site should appear like below.
 
-![Local Site](/assets/images/1/server-start.jpg)
+![Local Site](/assets/images/webdev/getting_started/server-start.jpg)
 
 After you run `bundle exec` to run your site locally, you'll find the `_site` directory added to your project folder. This is where Jekyll puts all the files it combines to make your web page. Don't try and save or edit anything in here directly, as everything in _site gets deleted and rebuilt any time you make changes.
 
@@ -250,7 +250,7 @@ smith (master) demo $ git push -u origin master
 
 From your repository, click the `Clone or download` button to get your repository URL.
 
-![Repo URL](/assets/images/1/repo.jpg)
+![Repo URL](/assets/images/webdev/getting_started/repo.jpg)
 
 After your first commit, you won't need to specify `-u origin master` each time, you can just type `git push` to commit your changes.
 
