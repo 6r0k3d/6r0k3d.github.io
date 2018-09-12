@@ -109,13 +109,13 @@ header h2 {
   width: 80%;
   border-left: 1px dashed $conifer;
   border-bottom: 1px dashed $conifer;
+  padding-left: 20px;
   -webkit-font-smoothing: antialiased;
   flex-grow: 128;
 }
 
 #body-container {
-  width: 90%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 10px 0px 0px 10px;
 }
 
@@ -154,6 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #main_content h3 {
   font-size: 18px;
+  margin: 0;
 }
 
 #main_content h4 {
