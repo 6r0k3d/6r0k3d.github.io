@@ -2,6 +2,7 @@
 layout: page
 title: Web Development
 ---
+<p style="display:inline">- How I Built this Blog</p>
 {% for item in site.webdev %}
-  <h2 style="display:inline"><a class="header_link" href="{{ item.url }}">{{ item.link }}</a></h2><p style="display:inline"> - {{ item.description }}</p>
+  <a href="{{ item.url }}">{{ item.link }}</a> - {{ item.description }}
 {% endfor %}
