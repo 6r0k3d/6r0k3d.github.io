@@ -46,6 +46,43 @@ No symbol table is loaded.  Use the "file" command.
 No symbol table is loaded.  Use the "file" command.
 ```
 
+### Viewing Assembly Code
+
+To view the assembly code instructions the compiler generated from the source code, use the `disassemble` command. You can specify a memory address, a function name, or a register containing the address of a machine instruction.
+
+- By instruction memory address: `disassemble 0x00000000004005b6`
+- By function name: `disassemble main`
+- By register (instruction pointer):`disassemble $rip`
+
+GDB can also display mixed source and assembly with the `/s` modifier:
+
+```bash
+(gdb) disassemble /s main
+Dump of assembler code for function main:
+./exercises/stack1.c:
+6	int main() {
+   0x00000000004005b6 <+0>:	push   rbp
+   0x00000000004005b7 <+1>:	mov    rbp,rsp
+   0x00000000004005ba <+4>:	sub    rsp,0x60
+
+7	    int cookie;
+8	    char buf[80];
+9	
+10	    printf("buf: %p cookie: %08x\n", &buf, &cookie);
+   0x00000000004005be <+8>:	lea    rdx,[rbp-0x4]
+   0x00000000004005c2 <+12>:	lea    rax,[rbp-0x60]
+   0x00000000004005c6 <+16>:	mov    rsi,rax
+   0x00000000004005c9 <+19>:	mov    edi,0x400694
+   0x00000000004005ce <+24>:	mov    eax,0x0
+   0x00000000004005d3 <+29>:	call   0x400480 <printf@plt>
+```
+
+The assembly instructions generated are shown as a block below the source code line(s) they were compiled from.
+
+### Clearing the Screen
+
+To clear the console, use `Ctrl+L`.
+
 ### Using Breakpoints
 
 In order to look at the state of memory while a program is running, you'll need to tell the program to stop executing at certain points. To do this you'll need to set a breakpoint.
@@ -56,7 +93,7 @@ You have a few options to sets breakpoints:
 
 - By function: `break <function name>`
 
-- By address: `break <memory address>`
+- By address: `break *<memory address>`
 
 There are [others](http://www.delorie.com/gnu/docs/gdb/gdb_29.html), but these are what we'll use for now. 
 
@@ -109,6 +146,17 @@ Output trimmed
 `info register <register name>` displays only the named register(s).
 
 As shown above, GDB displays the registers in two columns. The first is the register data in raw format (hex), and the second is the register's natural format. The natural format varies by register, as explained in [this Stack Overflow answer](https://stackoverflow.com/a/27990499/1101802).
+
+### Examining Data
+
+We can examine data in the program with the `print` command. This will evaluate and display the value of an expression, and is useful for doing memory address math quickly.
+
+```bash
+(gdb) print 0xe396471c - 0xe39646c0
+$1 = 92
+```
+
+You can use it to examine all of the data in a program, there is additional documentation [here](ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_9.html) for how to use it, but for a better understanding of the data, I prefer to look at data by examining memory.
 
 ### Examining Memory
 
