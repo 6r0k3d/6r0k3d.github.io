@@ -102,7 +102,7 @@ Dump of assembler code for function main:
    0x00000000004005d3 <+29>:	call   0x400480 <printf@plt>
 ```
 
-These first three assembly instructions, `push`, `mov`, and `pop`, are called the *function prologue*. The function prologue does the work of the initial setup of memory for a function in a program. To better understand what's happening, I'm going to take a detour to explain some parts of the CPU and how memory works.
+These first three assembly instructions, `push`, `mov`, and `sub`, are called the *function prologue*. The function prologue does the work of the initial setup of memory for a function in a program. To better understand what's happening, I'm going to take a detour to explain some parts of the CPU and how memory works.
 
 ## CPU Architecture
 
