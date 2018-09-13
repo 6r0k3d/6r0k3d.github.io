@@ -25,8 +25,6 @@ This guide will cover getting setup on a clean Ubuntu system. This walkthrough m
 
 In the interest of conciseness, I've put additional details for the various components needed at the end, with either a brief explanation and/or a link to additional resources. If you're already familiar with a given topic, just follow the steps and ignore the deep dive sections at the end. If you're brand new to some or all of these components like I was, the explanations at the end will hopefully give you enough understanding to get around.
 
-* TOC
-{:toc}
 
 ## What is Jekyll?
 
