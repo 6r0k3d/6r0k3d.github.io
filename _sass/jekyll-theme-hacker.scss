@@ -63,6 +63,9 @@ article {
   padding-left: 1em;
 }
 
+div.home:last-child hr {
+  display: none;
+}
 img {
   max-width: 100%;
 }
@@ -124,10 +127,28 @@ header h2 {
 
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media screen and (max-width: 1200px) {
-    #main_nav {
+@media screen and (max-width: 800px) {
+    div#header-container>h2{
       display: none;
     }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    nav, article {
+      max-height: 100%;
+      flex: 1;
+      overflow: initial;
+    }
+
+    #main_nav {
+      border-right: 0;
+      border-bottom: 1px dashed $conifer;
+      min-height: 150px;
+    }
+
 }
 
 
