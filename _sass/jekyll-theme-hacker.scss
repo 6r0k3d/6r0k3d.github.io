@@ -13,6 +13,8 @@ html {
   height: 100%;
 }
 
+/* Main Content
+*/
 body {
   height: 100%;
   margin: 0;
@@ -22,72 +24,56 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  //grid-column-gap: 3em;
 }
 
-/* Main Content
-*/
-#main_flex {
-  height: 100%;
-  overflow: hidden;
-  margin: 0px;
-  display: flex;
-}
-
-#left {
-  flex-shrink: 0;
-  max-width: 100vw;
-  /*
-  flex-basis: 20%;
-  padding-top: 5px;
-  padding-left: 5px;
-  */
-}
-
-#right {
-  //max-width: 1100px;
-  //max-width: 900px;
-  width: 100%;
-  max-width: 90vw;
-  margin: 10px 0px 0px 0px;
-  -webkit-font-smoothing: antialiased;
-}
-
-.column {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.top-left {
-  flex-shrink: 0;
-  background: $body-background url("../images/bkg.png") 0 0;
-  color: $body-foreground;
+header {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-row-start: 1;
+  grid-column: 1/3;
   background: rgba(0, 0, 0, 0.1);
+  width: 100%;
   border-bottom: 1px dashed $conifer;
+  padding: 20px 20px;
 }
 
-.top-right {
-  display: inline-flex;
-  flex-shrink: 0;
+header > div {
+    grid-column: 2/3;
 }
 
-.bottom {
-  flex-grow: 1;
+nav {
+  grid-row: 2/3;
+  grid-column-start: 1;
   overflow-y: auto;
-  padding: 20px;
-}
-/*
-#main {
-  border-left: 1px dashed $conifer;
+  border-right: 1px dashed $conifer;
+  padding-right: 5px;
 }
 
-#body-container {
-  //max-width: 1100px;
-  max-width: 99%;
-  margin: 10px 0px 0px 10px;
+article {
+  grid-row-start: 2;
+  grid-column: 2/3;
+  overflow-y: auto;
+  max-width: 100%;
+  padding-right: 100px;
+  padding-left: 1em;
 }
-*/
 
+img {
+  max-width: 100%;
+}
+
+footer {
+  grid-row-start: 3;
+  grid-column: 1/3;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-top: 1px dashed $conifer;
+}
 // Taken from gems/minima/_sass/minima/_layout.scss
 .page-link {
   // Gaps between nav items, but not on the last one
@@ -96,27 +82,12 @@ body {
   }
 }
 
-/* General & 'Reset' Stuff */
-
-#header-container {
-  width: 90%;
-  max-width: 1000px;
-  //margin: 0 auto;
-}
-
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 10px;
 }
 
 li {
   line-height: 1.4 ;
-}
-
-header {
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  border-bottom: 1px dashed $conifer;
-  padding: 20px 20px;
 }
 
 header h1 {
@@ -153,22 +124,12 @@ header h2 {
 
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-/*
-@media screen and (max-width: 600px) {
-    #main_flex {
-      -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-    #right{
-      border-top: 1px dashed $conifer;
-      border-left:0;
+@media screen and (max-width: 1200px) {
+    #main_nav {
+      display: none;
     }
 }
-*/
 
-section img {
-  max-width: 100%
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -266,13 +227,6 @@ hr {
   border: 0;
   border-bottom: 1px dashed #b5e853;
   color: #b5e853;
-}
-
-footer {
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  border-top: 1px dashed $conifer; //header;
-  padding: 20px 0;
 }
 
 /* Buttons
