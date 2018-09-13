@@ -8,10 +8,8 @@ github_comments_issueid: 2
 permalink: /exdev/intro.html
 date: 27 Aug 2018
 ---
-Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming). 
+Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming).
 
-* TOC
-{:toc}
 ## WARNING
 
 The instructions below will put your computer into a vulnerable state. It turns off certain defensive measures and introduces vulnerable code. Don't do this on your home workstation. Build a VM. I'll have an environment build guide shortly.
