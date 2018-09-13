@@ -1,3 +1,7 @@
+---
+nav: nav_default.html
+---
+
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
@@ -15,27 +19,26 @@
   </head>
 
   <body>
-    {%- include header.html -%}
 
     <div id="main_flex">
+      <nav id="left" class="column">
+        <div class="top-left"></br></br></br></br></br></br></br></div>
+        <section class="bottom">
+          {% include {{ layout.nav }} %}
+        </section>
+        </nav>
 
-      <nav id="main_nav">
-        <h1 style="font-size:30px">Guides</h1>
-        {% for collection in site.collections %}
-          {% if collection.label != "posts" %}
-            <ul>
-              <li><h2><a class="header_link" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}</a></h2></li>
-            </ul>
-          {% endif %}
-        {% endfor %}
-      </nav>
+      <div id="right" class="column">
+        <div class="top-right">
+          {% include header.html %}
+        </div>
 
-      <div id="main_content">
-        <section id="body-container">
-          {{ content }}
+        <section id="main" class="bottom">
+          <div id="body-container">
+            {{ content }}
+          </div>
         </section>
       </div>
-
     </div>
 
     {% include footer.html %}
