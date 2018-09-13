@@ -9,7 +9,14 @@ $header: $conifer !default;
 $blockquote-color: $silver-chalice !default;
 $blockquote-border: $dove-grey !default;
 
+html {
+  height: 100%;
+}
+
+/* Main Content
+*/
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
   background: $body-background url("../images/bkg.png") 0 0;
@@ -17,8 +24,56 @@ body {
   font-size: 16px;
   line-height: 1.5;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  //grid-column-gap: 3em;
 }
 
+header {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-row-start: 1;
+  grid-column: 1/3;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-bottom: 1px dashed $conifer;
+  padding: 20px 20px;
+}
+
+header > div {
+    grid-column: 2/3;
+}
+
+nav {
+  grid-row: 2/3;
+  grid-column-start: 1;
+  overflow-y: auto;
+  border-right: 1px dashed $conifer;
+  padding-right: 5px;
+}
+
+article {
+  grid-row-start: 2;
+  grid-column: 2/3;
+  overflow-y: auto;
+  max-width: 100%;
+  padding-right: 100px;
+  padding-left: 1em;
+}
+
+img {
+  max-width: 100%;
+}
+
+footer {
+  grid-row-start: 3;
+  grid-column: 1/3;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-top: 1px dashed $conifer;
+}
 // Taken from gems/minima/_sass/minima/_layout.scss
 .page-link {
   // Gaps between nav items, but not on the last one
@@ -27,33 +82,12 @@ body {
   }
 }
 
-/* General & 'Reset' Stuff */
-
-#header-container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 20px;
+  margin: 0 0 10px;
 }
 
 li {
   line-height: 1.4 ;
-}
-
-/* Header, <header>
-   header   - container
-   h1       - project name
-   h2       - project description
-*/
-
-header {
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  border-bottom: 1px dashed $conifer; //header;
-  padding: 20px 20px;
 }
 
 header h1 {
@@ -87,52 +121,15 @@ header h2 {
   margin: 0;
 }
 
-/* Main Content
-*/
-#main_flex{
-  display: flex;
-  justify-content: flex-start;
-  min-height: 800px;
-}
 
-#main_nav {
-  // width: 20%;
-  //margin: 0px 0 0 20px;
-  padding-top: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-bottom: 1px dashed $conifer;
-  flex-grow: 1;
-}
-
-#main_content {
-  width: 80%;
-  border-left: 1px dashed $conifer;
-  border-bottom: 1px dashed $conifer;
-  padding-left: 20px;
-  -webkit-font-smoothing: antialiased;
-  flex-grow: 128;
-}
-
-#body-container {
-  max-width: 1100px;
-  margin: 10px 0px 0px 10px;
-}
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    #main_flex {
-      -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-    #main_content{
-      border-left:0;
+@media screen and (max-width: 1200px) {
+    #main_nav {
+      display: none;
     }
 }
 
-section img {
-  max-width: 100%
-}
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -230,13 +227,6 @@ hr {
   border: 0;
   border-bottom: 1px dashed #b5e853;
   color: #b5e853;
-}
-
-footer {
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  //border-top: 1px dashed $conifer; //header;
-  padding: 20px 0;
 }
 
 /* Buttons
