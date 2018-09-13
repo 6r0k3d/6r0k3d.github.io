@@ -18,28 +18,14 @@ nav: nav_default.html
     {% seo %}
   </head>
 
-  <body>
+  <body>    
+    {% include header.html %}
 
-    <div id="main_flex">
-      <nav id="left" class="column">
-        <div class="top-left"></br></br></br></br></br></br></br></div>
-        <section class="bottom">
-          {% include {{ layout.nav }} %}
-        </section>
-        </nav>
+    {% include {{ layout.nav }} %}
 
-      <div id="right" class="column">
-        <div class="top-right">
-          {% include header.html %}
-        </div>
-
-        <section id="main" class="bottom">
-          <div id="body-container">
-            {{ content }}
-          </div>
-        </section>
-      </div>
-    </div>
+    <article>
+      {{ content }}
+    </article>
 
     {% include footer.html %}
   </body>
