@@ -65,11 +65,7 @@ Dump of assembler code for function main:
 
 7	    int cookie;
 8	    char buf[80];
-<<<<<<< HEAD
 9
-=======
-9
->>>>>>> master
 10	    printf("buf: %p cookie: %08x\n", &buf, &cookie);
    0x00000000004005be <+8>:	lea    rdx,[rbp-0x4]
    0x00000000004005c2 <+12>:	lea    rax,[rbp-0x60]
@@ -97,11 +93,7 @@ You have a few options to sets breakpoints:
 
 - By address: `break *<memory address>`
 
-<<<<<<< HEAD
 There are [others](http://www.delorie.com/gnu/docs/gdb/gdb_29.html), but these are what we'll use for now.
-=======
-There are [others](http://www.delorie.com/gnu/docs/gdb/gdb_29.html), but these are what we'll use for now.
->>>>>>> master
 
 To list your current breakpoints, use `info break`.
 
@@ -131,11 +123,7 @@ After hitting a breakpoint, there are a few ways to resume code execution. The t
 
 `Step` runs until it reaches the next line of source code for which there is debugging information. If the next line of code has a function call, step will stop execution inside this called function (assuming debugging information is available).
 
-<<<<<<< HEAD
 `Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function.
-=======
-`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function.
->>>>>>> master
 
 To see additional control options, read more [here](https://sourceware.org/gdb/onlinedocs/gdb/Continuing-and-Stepping.html#Continuing-and-Stepping).
 
@@ -170,11 +158,7 @@ You can use it to examine all of the data in a program, there is additional docu
 
 ### Examining Memory
 
-<<<<<<< HEAD
 In order to see what is stored in various variables or sections of a programs memory, we examine it with `x`.
-=======
-In order to see what is stored in various variables or sections of a programs memory, we examine it with `x`.
->>>>>>> master
 
 The syntax for the command is: `x/nfu <memory location>`
 
@@ -186,11 +170,7 @@ The syntax for the command is: `x/nfu <memory location>`
 
 **f** is the format to print memory, **x** for hex, **d** for decimal, **s** for string, and **i** for instruction (when printing assembly).
 
-<<<<<<< HEAD
 The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable or function name, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`.
-=======
-The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable or function name, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`.
->>>>>>> master
 
 #### Examine 32 bytes starting from a Register
 
@@ -255,11 +235,7 @@ You can see below a quick snapshot of the two:
    0x4005ce <main+24>:	mov    eax,0x0
    0x4005d3 <main+29>:	call   0x400480 <printf@plt>
    0x4005d8 <main+34>:	lea    rax,[rbp-0x60]
-<<<<<<< HEAD
 
-=======
-
->>>>>>> master
 # AT&T Syntax
 (gdb) set disassembly-flavor att
 (gdb) x/10i &main
@@ -278,53 +254,31 @@ You can see below a quick snapshot of the two:
 
 ## Perl
 
-<<<<<<< HEAD
 In order to quickly experiment with input values, we need a way to efficiently send different values to a program. One effective tool for this is Perl.
 
 ### Input
-=======
-In order to quickly experiment with input values, we need a way to efficiently send different values to a program. One effective tool for this is Perl.
-
-### Input
->>>>>>> master
 
 To generate input to a program, we'll use the following command:
 
 ```bash
 smith (master) bin $ perl -e 'print "A"x4'
-<<<<<<< HEAD
 AAAAsmith (master) bin $
-=======
-AAAAsmith (master) bin $
->>>>>>> master
 ```
 
 We use the `-e` switch to indicate what follows is Perl code for the compiler to execute. We then wrap the code we want executed in single quotes.
 
-<<<<<<< HEAD
 For our examples, we'll be printing strings to fill buffers. The example above prints out 4 letter As to the command line.
-=======
-For our examples, we'll be printing strings to fill buffers. The example above prints out 4 letter As to the command line.
->>>>>>> master
 
 We can concatenate output using the '`.`' character. This makes it easier to understand our exploit's pieces, as we can separate our overflow characters with the characters we'll use to take over a program.
 
 ```bash
 smith (master) bin $ perl -e 'print "A"x4 . "B"x4'
-<<<<<<< HEAD
 AAAABBBBsmith (master) bin $
-=======
-AAAABBBBsmith (master) bin $
->>>>>>> master
 ```
 
 You can see how the four letter Bs get added to the end of the letter As. This just makes it easy to play with the input we'll send to the vulnerable program.
 
-<<<<<<< HEAD
 You'll notice the command prompt doesn't start on a new line after the output. This is because we didn't tell Perl to print a new-line character, '`\n`'. If we add that to the end of the string, the command prompt will start on a new line, but unless we need to send the new line to the program we're exploiting, we'll skip that.
-=======
-You'll notice the command prompt doesn't start on a new line after the output. This is because we didn't tell Perl to print a new-line character, '`\n`'. If we add that to the end of the string, the command prompt will start on a new line, but unless we need to send the new line to the program we're exploiting, we'll skip that.
->>>>>>> master
 
 ### Sending Data
 
@@ -337,7 +291,3 @@ Segmentation fault (core dumped)
 ```
 
 The program runs, using the data we created with Perl as its input.
-<<<<<<< HEAD
-
-=======
->>>>>>> master
