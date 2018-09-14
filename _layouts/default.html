@@ -10,6 +10,15 @@ nav: nav_default.html
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=A075eA8OK6">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=A075eA8OK6">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=A075eA8OK6">
+    <link rel="manifest" href="/site.webmanifest?v=A075eA8OK6">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=A075eA8OK6" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=A075eA8OK6">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     {% include cookieconsent.html %}
     {% if jekyll.environment == 'production' %}
         {% include analytics.html %}
@@ -19,14 +28,22 @@ nav: nav_default.html
   </head>
 
   <body>
-    {% include header.html %}
 
-    {% include {{ layout.nav }} %}
+    <header>
+      {% include header.html %}
+    </header>
+
+    <nav id="main_nav">
+      {% include {{ layout.nav }} %}
+    </nav>
 
     <article>
       {{ content }}
     </article>
 
-    {% include footer.html %}
+    <footer>
+      {% include footer.html %}
+    </footer>
+
   </body>
 </html>

@@ -1,3 +1,9 @@
-<footer>
+<div class="previous">
+  <h3>Previous Article</h3>
+  <a class="truncate" href="{{ site.url }}{{ page.previous.url }}"><< {{ page.previous.link }}</a>
+</div>
 
-</footer>
+<div class="next">
+  <h3>Next Article</h3>
+  <a class="truncate" href="{{ site.url }}{{ page.next.url }}">{{ page.next.link }} >></a>
+</div>
