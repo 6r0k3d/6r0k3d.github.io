@@ -162,6 +162,7 @@ For the 8 bit registers, you can independently access the low (0-7) or high (8-1
 ![Register Names](/assets/images/exdev/stack1/customtable.jpg)
 
 ## Computer Memory
+>>>>>>> develop
 
 Absolutely everything about the operation of a computer comes down to memory management. While the CPU does all the number crunching, all of the instructions it follows and the data it manipulates are stored in Random Access Memory, or RAM (assuming no memory has been swapped to disk, but that's beyond the scope of this walkthrough).
 
@@ -200,6 +201,7 @@ Lower Memory Addresses
 |--------------------|
 |        stack       |  <- Function + Local variable storage
 |--------------------|
+>>>>>>> develop
 Higher Memory Addresses
 ```
 
@@ -241,6 +243,7 @@ int function1(int a, int b) {
     int var1 = 10;
     int answer;
 
+>>>>>>> develop
     char var2[2] = "A";
     char *var_ptr;
     var_ptr = var2;
@@ -266,6 +269,7 @@ Reading symbols from mem_segments...done.
 Breakpoint 1 at 0x40066e: file mem_segments.c, line 12.
 (gdb) run
 Starting program: /home/smith/Desktop/mem_segments
+>>>>>>> develop
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -287,6 +291,7 @@ The data (initialized variables) and bss (uninitialized variables) sections are 
 ```
 
 The variables `number_init` and `number_uninit` are global because they are declared outside of any function. As a result, any function in this program can see and manipulate those values.
+>>>>>>> develop
 
 The two variables are located at `0x601058` and `0x601060`. Because the size of these sections won't change during execution, unlike the stack and the heap memory segments, they can be placed closely next to each other, which is why there is only two bytes separating these variables. [This thread](https://stackoverflow.com/a/24850734/1101802) on Stack Overflow is useful for understanding the historical reasons for having these two different segments.
 
@@ -316,6 +321,7 @@ You may have noticed when we inspected the memory of the pointers that we didn't
 ## Stack
 
 The last memory section to look at is the stack. The stack is what allows us to use functions to modularize our code. It is known as a "Last In, First Out" (LIFO) data structure. You can think of it like the spring loaded plate dispensers at a buffet restaurant, the last plate added to the stack will be the first plate taken off. Adding data to the stack is done with a `push` instruction, while taking data off the stack is done with a `pop` instruction.
+>>>>>>> develop
 
 The data for each of a program's functions is stored in what's called a "stack frame". The CPU tracks the start and end of the stack frame with the `rbp` and `rsp` registers. `rbp` points to the bottom of the frame located at higher memory addresses, while `rsp` points to the top of a frame at a lower address. Stack frames only exist when their function is called. For our example code, mem_segments.c, if you set a breakpoint at main, there will be no stack frame for the `function1()` function until after it is called on line 26.
 
@@ -379,6 +385,7 @@ Dump of assembler code for function main:
 `function1()`  is called with two parameters, `var_a` and `var_b`. On older architectures, function parameters would get pushed to the stack in reverse order, and they would be referenced as offsets from `rbp`. This still happens in certain situations, but with additional registers available on x64 CPUs, parameters can be passed to functions in registers. This is more efficient since the CPU doesn't have to waste instructions or execution time storing extra data on the stack it doesn't need to. Function parameters are passed to the callee function in the registers `rdi`, `rsi`, `rdx`, `rcx`, `r8`, and `r9`.  You can see the setup for this occurring with the four `mov` instructions before the `call` instruction. For more information about this calling convention, you can read about the System V Application Binary Interface (ABI) from OS Dev [here](https://wiki.osdev.org/System_V_ABI#x86-64).
 
 We can see the pushed return address after the `call` instruction in gdb below.
+>>>>>>> develop
 
 ```c
 (gdb) break function1
@@ -427,6 +434,7 @@ We can see the same impact when we display the base pointer as words:
 ```
 
 gdb is displaying the hex values in the proper order for each set of four bytes, with the most significant byte on the left to least significant on the right.  Just remember that the bytes are still stored in reverse in memory.
+>>>>>>> develop
 
 When looking at eight byte variables in memory, its easier to print them as giants, where as when looking at four byte variables, its easier to print them as words. I'll print in the format that makes the most sense for the data being viewed.
 
@@ -439,6 +447,7 @@ The first step is when the function gets called. The return address is pushed to
 ```c
 (gdb) run
 Starting program: /home/smith/Desktop/mem_segments
+>>>>>>> develop
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -459,6 +468,7 @@ rbp            0x7fffffffdde0	0x7fffffffdde0
 ```
 
 The second step is the execution of the function prologue which sets up the required stack area for the stack frame. When the mem_segments.c source code is compiled, the compiler determines how much memory on the stack is needed for each function. The first instructions of the function then set up the frame.
+>>>>>>> develop
 
 ```c
 (gdb) break *0x00000000004006f1
@@ -466,6 +476,7 @@ Breakpoint 6 at 0x4006f1: file mem_segments.c, line 32.
 
 (gdb) run
 Starting program: /home/smith/Desktop/mem_segments
+>>>>>>> develop
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -495,6 +506,7 @@ And the two stack frames in gdb:
 rsp            0x7fffffffdd80	0x7fffffffdd80
 rbp            0x7fffffffddb0	0x7fffffffddb0
 
+>>>>>>> develop
 (gdb) x/32xw $rsp
 0x7fffffffdd80:	0x00602420	0x00000000	0x00602000	0x00000000
 0x7fffffffdd90:	0x0000000d	0x00000000	0x00000000	0x00000000
@@ -530,6 +542,7 @@ Breakpoint 1 at 0x4005e9: file ./exercises/stack1.c, line 12.
 
 (gdb) run
 Starting program: /home/smith/InsecureProgramming/bin/stack1
+>>>>>>> develop
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCD
 Breakpoint 1, main () at ./exercises/stack1.c:13
@@ -544,6 +557,7 @@ Nothing. We didn't get "you win!". Let's look at why not.
 ```c
 (gdb) run
 Starting program: /home/smith/InsecureProgramming/bin/stack1
+>>>>>>> develop
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCD
 
@@ -558,6 +572,7 @@ Breakpoint 1, main () at ./exercises/stack1.c:13
 0x7fffffffdd90:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdda0:	0x41414141	0x41414141	0x41414141	0x44434241
 
+>>>>>>> develop
 (gdb) x/xw &cookie
 0x7fffffffddac:	0x44434241
 ```
@@ -574,6 +589,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 The program being debugged has been started already.
 Start it from the beginning? (y or n) y
 Starting program: /home/smith/InsecureProgramming/bin/stack1
+>>>>>>> develop
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADCBA
 
@@ -586,3 +602,4 @@ you win!
 ```
 
 You win. Well done.
+>>>>>>> develop
