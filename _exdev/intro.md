@@ -28,10 +28,10 @@ If you don't use `-fno-stack-protector`, you'll get this message when trying to 
 
 ```bash
 (gdb) run stack2
-Starting program: /home/smith/Desktop/InsecureProgramming/bin/stack1 stack2
+Starting program: /home/6r0k3d/Desktop/InsecureProgramming/bin/stack1 stack2
 buf: ffffdd30 cookie: ffffdd2c
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-*** stack smashing detected ***: /home/smith/Desktop/InsecureProgramming/bin/stack1 terminated
+*** stack smashing detected ***: /home/6r0k3d/Desktop/InsecureProgramming/bin/stack1 terminated
 
 Program received signal SIGABRT, Aborted.
 ```
