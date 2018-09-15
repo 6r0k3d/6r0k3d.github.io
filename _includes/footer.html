@@ -1,23 +1,28 @@
 {% if page.previous %}
 <div class="previous">
-  <h3>Previous Article</h3>
-  <a class="truncate" href="{{ site.url }}{{ page.previous.url }}"><< {{ page.previous.link }}</a>
+  <div>
+    <h3><< Previous Article</h3>
+    <a class="btn truncate" href="{{ site.url }}{{ page.previous.url }}">{{ page.previous.link }}</a>
+  </div>
 </div>
 {% endif %}
 
-<div class="social">
-  <a href="https://twitter.com/6r0k3d">
-    <span classssss="twicon"></span>
-    Follow me on Twitter
-  </a>
+<div class="top">
+  <div>
+    {% for collection in site.collections %}
+      {% if page.id contains collection.label %}
+        <h3>Up</h3>
+        <a class="btn truncate" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}"</a>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>
 
 {% if page.next %}
 <div class="next">
-  <h3>Next Article</h3>
-  <a class="truncate" href="{{ site.url }}{{ page.next.url }}">{{ page.next.link }} >></a>
+    <div>
+    <h3>Next Article >></h3>
+    <a class="btn truncate" href="{{ site.url }}{{ page.next.url }}">{{ page.next.link }}</a>
+  </div>
 </div>
 {% endif %}
-
-<a href="https://twitter.com/6r0k3d?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @6r0k3d</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

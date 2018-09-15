@@ -80,6 +80,7 @@ footer {
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
   border-top: 1px dashed $conifer;
+  padding-top: 2px;
 }
 
 footer > div {
@@ -87,6 +88,9 @@ footer > div {
   grid-template-columns: 1fr;
 }
 
+div > h3 {
+  text-align: .5fr;
+}
 .truncate {
   width: 1fr;
   white-space: nowrap;
@@ -98,9 +102,8 @@ footer > div {
   grid-column-start: 2;
 }
 
-.social {
+.top {
   grid-column-start: 4;
-  padding-top: 5px;
 }
 
 .next{
@@ -285,7 +288,7 @@ hr {
 .btn {
   display: inline-block;
   background: -webkit-linear-gradient(top, rgba(40, 40, 40, 0.3), rgba(35, 35, 35, 0.3) 50%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3));
-  padding: 8px 18px;
+  padding: 6px 18px;
   border-radius: 50px;
   border: 2px solid rgba(0, 0, 0, 0.7);
   border-bottom: 2px solid rgba(0, 0, 0, 0.7);
@@ -297,6 +300,7 @@ hr {
   text-decoration: none;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin: 0px 2px;
 }
 
 .btn:hover {

