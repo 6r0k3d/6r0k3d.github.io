@@ -88,9 +88,32 @@ footer > div {
   grid-template-columns: 1fr;
 }
 
-div > h3 {
-  text-align: .5fr;
+.lineno {
+  // background: white;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
+
+.gutter {
+  text-align: center;
+  padding: 0;
+  width: 2em;
+}
+
+figure {
+  width: 100%;
+  margin: 0px;
+}
+
+code > table {
+  // background: white;
+  margin: 0px;
+}
+
+td > pre {
+  // background: white;
+  border: 0;
+}
+
 .truncate {
   width: 1fr;
   white-space: nowrap;
@@ -100,6 +123,10 @@ div > h3 {
 
 .previous {
   grid-column-start: 2;
+}
+
+div.top > div {
+  text-align: center;
 }
 
 .top {
