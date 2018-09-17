@@ -9,6 +9,13 @@ nav: nav_post.html
 
 {{content}}
 
+<div class="share">
+  <a class="btn" target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title }}%20-%20{{ page.description }}&url={{ site.url }}{{ page.id }}">
+    <img src="/assets/images/twitter.svg">
+    Tweet
+  </a>
+</div>
+
 {% include github-comments.html %}
 
 <!--
