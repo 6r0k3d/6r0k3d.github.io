@@ -10,14 +10,13 @@ date: 29 Aug 2018
 ---
 stack1.c is the first of the Stack Warmup Exercises. This guide will walk you through the buffer overflow process and explain the details behind what's happening. I ran all of the following on a 64-bit Ubuntu 16.04 box.
 
-
 ## Source Code Review
 
 We'll start with a review of the source code to get an idea of what's happening and what we need to do.
-
+<div class="code-container">
 {% highlight c linenos %}
-/* stack1-stdin.c                               *
- * specially crafted to feed your brain by gera */
+// stack1-stdin.c                               
+// specially crafted to feed your brain by gera
 
 #include <stdio.h>
 
@@ -33,6 +32,11 @@ printf("you win!\n");
 }
 {% endhighlight %}
 
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
 
 First two variables are declared, `cookie` and `buf`. `cookie` is defined as an int variable, and `buf` is an array of 80 characters.
 
@@ -206,6 +210,7 @@ Higher Memory Addresses
 
 We can see the differences in addresses by looking at the programs memory with gdb. We'll use the following program, mem_segments.c, to explore this.
 
+<div class="code-container">
 {% highlight c linenos %}
 #include <stdio.h>
 #include <stdlib.h>
@@ -223,18 +228,18 @@ int main() {
     int var_a = 10;
     int var_b = 20;
     int result;
-    
+
     printf("Hello, world!\n");
-    
+
     ptr1 = malloc(100);
     ptr2 = malloc(mem_block);
-    
+
     free(ptr1);
     free(ptr2);
-    
+
     result = function1(var_a, var_b);
     printf("Result: %d\n", result);
-    
+
     return 0;
 }
 
@@ -245,16 +250,20 @@ int function1(int a, int b) {
     char var2[2] = "A";
     char *var_ptr;
     var_ptr = var2;
-    
+
     printf("Letter A as Hex character: 0x%x\n", *var_ptr);
-    
+
     answer = a + b + answer;
-    
+
     return answer;
 }
 
 {% endhighlight %}
 
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+</div>
 
 Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`. We'll run the program in gdb and look at it's memory segments.
 

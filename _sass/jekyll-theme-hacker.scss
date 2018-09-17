@@ -3,6 +3,13 @@
 @import "_gh-comments";
 @import "_gh-code";
 
+@import "typography";
+@import "colors";
+@import "color-system";
+@import "tt-layout";
+@import "misc";
+@import "primer-tooltips";
+
 $body-background: $cod-grey !default;
 $body-foreground: $gallery !default;
 $header: $conifer !default;
@@ -54,6 +61,7 @@ nav {
 
 #main_nav{
   border-right: 1px dashed $conifer;
+  min-width: 300px;
 }
 
 article {
@@ -69,6 +77,10 @@ div.home:last-child hr {
 }
 img {
   max-width: 100%;
+}
+
+.share {
+  text-align: center;
 }
 
 footer {
@@ -96,6 +108,15 @@ footer > div {
   text-align: center;
   padding: 0;
   width: 2em;
+}
+
+.code-container {
+  position: relative;
+}
+.cbtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 figure {
@@ -268,7 +289,7 @@ blockquote {
 pre {
   background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 16px;
   color: #b5e853;
   border-radius: 2px;
