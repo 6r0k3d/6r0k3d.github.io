@@ -29,7 +29,20 @@
 
 <script src="/assets/js/jquery.js"></script>
 <script src="/assets/js/jquery-ui.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/tooltips.js"></script>
 <script>
+var clipboard = new ClipboardJS('.cbtn', {
+    target: function(trigger) {
+      return $(trigger).prev().find("td[class|='code']")[0];
+    }
+});
+
+clipboard.on('success', function(e) {
+  e.clearSelection();
+  showTooltip(e.trigger,'Copied!');
+})
+
 $( function() {
   $( "#main_nav" ).resizable({
     handles: "e",
