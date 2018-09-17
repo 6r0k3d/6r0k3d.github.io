@@ -25,6 +25,8 @@ nav: nav_default.html
     {% endif %}
 
     {% seo %}
+
+    <link href="/assets/css/jquery-ui.css" rel="stylesheet">
   </head>
 
   <body>
@@ -33,7 +35,7 @@ nav: nav_default.html
       {% include header.html %}
     </header>
 
-    <nav id="main_nav">
+    <nav id="main_nav" class="ui-widget-resizable">
       {% include {{ layout.nav }} %}
     </nav>
 
