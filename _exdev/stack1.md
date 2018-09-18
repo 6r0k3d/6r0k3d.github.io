@@ -109,7 +109,7 @@ These first three assembly instructions, `push`, `mov`, and `sub`, are called th
 
 ## CPU Architecture
 
-The CPU uses special memory located directly on it called registers to store memory addresses, hold data for operations, and track the results of these operations. The size of a computer's register is determined by the system's "word size." The word size of a computer is the maximum number of bits it's CPU can process at once. On an x86 computer system, the word size is 32 bits, while on x64 systems the word size is 64 bits.
+The CPU uses special memory located directly on it called registers to store memory addresses, hold data for operations, and track the results of these operations. The size of a computer's register is determined by the system's "word size." The word size of a computer is the maximum number of bits its CPU can process at once. On an x86 computer system, the word size is 32 bits, while on x64 systems the word size is 64 bits.
 
 There are important differences between register names for 64- and 32-bit systems. All 64-bit registers start with the letter "r," (except for the eflags register), while all 32-bit registers start with the letter "e." The naming convention is a result of the way CPUs were developed over time. For a more in depth look, you can read this [Stack Exchange answer](https://softwareengineering.stackexchange.com/a/127764) about register naming conventions.
 
@@ -265,7 +265,7 @@ int function1(int a, int b) {
 </button>
 </div>
 
-Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`. We'll run the program in gdb and look at it's memory segments.
+Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`. We'll run the program in gdb and look at its memory segments.
 
 ## Code Segment
 
