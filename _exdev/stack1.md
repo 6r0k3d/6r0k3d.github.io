@@ -71,7 +71,7 @@ As discussed above, the memory addresses for the buf and cookie variables are pr
 
 ## Examining the Program's Internals
 
-Having run the program, we can see the memory addresses for the buf and cookie variables displayed in hexadecimal. Knowing the buffer variable was declared as 80 bytes long, we might expect the difference between the two variables to equal 81 bytes, or one more than the size of our buffer. In other words, we might guess that the cookie variable is stored immediately after the buffer variable. We can check this easily with some math in GDB.
+Having run the program, we can see the memory addresses for the buf and cookie variables displayed in hexadecimal. Knowing the buffer variable was declared as 80 bytes long, we might expect the difference between the two variables to equal 81 bytes, or one more than the size of our buffer. In other words, we might guess that the cookie variable is stored immediately after the buffer variable. We can check this easily with some math in GDB. (If you're new GDB, you can check out my quick walkthrough [here](https://techcrucible.net/exdev/tools.html#gnu-debugger-gdb)).
 
 Looking at the addresses, you'll note that the cookie address `0xa091ad7c` is greater than the buffer's address, `0xa091ad20`.  (If you're unfamiliar with hex, you can confirm this by converting the values to decimal with [this calculator](https://www.binaryhexconverter.com/hex-to-decimal-converter)). By subtracting the cookie variables address from the buffer's address, we can see how much space is between the two variables:
 
