@@ -38,8 +38,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Program received signal SIGABRT, Aborted.
 ```
 
-
-
 The `chmod +x` command makes the `compile.sh` script executable.
 
 The last line of the code block turns off **A**ddress **S**pace **L**ayout **R**andomization (ASLR). This is a defensive measure implemented in the early 2000s that changes the location in memory that a program is loaded to every time the program runs. This makes exploitation more difficult since you can't hard code memory addresses. There are work arounds, but to get started, we can just disable it for now.
@@ -48,7 +46,8 @@ When you run the below code block, you are going to get a ton of `warning` and `
 
 Once you've got your compiled executables, you're ready to get started!
 
-```bash
+<div class="code-container">
+{% highlight bash linenos %}
 git clone https://github.com/gerasdf/InsecureProgramming.git
 cd InsecureProgramming/
 cat << 'EOF' > ./compile.sh
@@ -72,8 +71,13 @@ EOF
 chmod +x compile.sh
 ./compile.sh
 echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-```
+{% endhighlight %}
 
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
 ## Compilation Warnings and Notes
 
 All those warnings and notes on the command prompt are just the compiler trying to protect you from problems that may arise. It's best practice to resolve these, but since this isn't production code, and we're just using them for exercises, you can ignore them. So long as you don't see any error messages, you'll be fine.
