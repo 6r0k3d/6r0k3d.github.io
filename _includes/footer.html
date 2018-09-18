@@ -1,3 +1,52 @@
-<footer>
+{% if page.previous %}
+<div class="previous">
+  <div>
+    <h3><< Previous Article</h3>
+    <a class="btn truncate" href="{{ site.url }}{{ page.previous.url }}">{{ page.previous.link }}</a>
+  </div>
+</div>
+{% endif %}
 
-</footer>
+<div class="top">
+  <div>
+    {% for collection in site.collections %}
+      {% if page.id contains collection.label %}
+        <h3>Up</h3>
+        <a class="btn truncate" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}"</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% if page.next %}
+<div class="next">
+    <div>
+    <h3>Next Article >></h3>
+    <a class="btn truncate" href="{{ site.url }}{{ page.next.url }}">{{ page.next.link }}</a>
+  </div>
+</div>
+{% endif %}
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery-ui.js"></script>
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/tooltips.js"></script>
+<script>
+var clipboard = new ClipboardJS('.cbtn', {
+    target: function(trigger) {
+      return $(trigger).prev().find("td[class|='code']")[0];
+    }
+});
+
+clipboard.on('success', function(e) {
+  e.clearSelection();
+  showTooltip(e.trigger,'Copied!');
+})
+
+$( function() {
+  $( "#main_nav" ).resizable({
+    handles: "e",
+    minWidth: 300
+  });
+});
+</script>

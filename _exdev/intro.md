@@ -8,7 +8,7 @@ github_comments_issueid: 2
 permalink: /exdev/intro.html
 date: 27 Aug 2018
 ---
-Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming). 
+Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming).
 
 * TOC
 {:toc}
@@ -30,15 +30,13 @@ If you don't use `-fno-stack-protector`, you'll get this message when trying to 
 
 ```bash
 (gdb) run stack2
-Starting program: /home/smith/Desktop/InsecureProgramming/bin/stack1 stack2
+Starting program: /home/6r0k3d/Desktop/InsecureProgramming/bin/stack1 stack2
 buf: ffffdd30 cookie: ffffdd2c
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-*** stack smashing detected ***: /home/smith/Desktop/InsecureProgramming/bin/stack1 terminated
+*** stack smashing detected ***: /home/6r0k3d/Desktop/InsecureProgramming/bin/stack1 terminated
 
 Program received signal SIGABRT, Aborted.
 ```
-
-
 
 The `chmod +x` command makes the `compile.sh` script executable.
 
@@ -48,7 +46,8 @@ When you run the below code block, you are going to get a ton of `warning` and `
 
 Once you've got your compiled executables, you're ready to get started!
 
-```bash
+<div class="code-container">
+{% highlight bash linenos %}
 git clone https://github.com/gerasdf/InsecureProgramming.git
 cd InsecureProgramming/
 cat << 'EOF' > ./compile.sh
@@ -72,8 +71,13 @@ EOF
 chmod +x compile.sh
 ./compile.sh
 echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-```
+{% endhighlight %}
 
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
 ## Compilation Warnings and Notes
 
 All those warnings and notes on the command prompt are just the compiler trying to protect you from problems that may arise. It's best practice to resolve these, but since this isn't production code, and we're just using them for exercises, you can ignore them. So long as you don't see any error messages, you'll be fine.
