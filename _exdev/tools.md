@@ -252,7 +252,7 @@ You can see below a quick snapshot of the two:
 
 ```
 
-All of the commands above can generally be abbreviated with single letter shortcuts, eg, `inspect registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
+All of the commands above can generally be abbreviated with single letter shortcuts, eg, `info registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
 
 ## Perl
 
