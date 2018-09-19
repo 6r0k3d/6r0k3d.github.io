@@ -208,7 +208,7 @@ Lower Memory Addresses
 Higher Memory Addresses
 ```
 
-We can see the differences in addresses by looking at the programs memory with gdb. We'll use the following program, mem_segments.c, to explore this.
+We can see the differences in addresses by looking at the programs memory with gdb. We'll use the following program, mem_segments.c, to explore this. Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`. We'll run the program in gdb and look at its memory segments.
 
 <div class="code-container">
 {% highlight c linenos %}
@@ -228,18 +228,18 @@ int main() {
     int var_a = 10;
     int var_b = 20;
     int result;
-
+    
     printf("Hello, world!\n");
-
+    
     ptr1 = malloc(100);
     ptr2 = malloc(mem_block);
-
+    
     free(ptr1);
     free(ptr2);
-
+    
     result = function1(var_a, var_b);
     printf("Result: %d\n", result);
-
+    
     return 0;
 }
 
@@ -250,11 +250,11 @@ int function1(int a, int b) {
     char var2[2] = "A";
     char *var_ptr;
     var_ptr = var2;
-
+    
     printf("Letter A as Hex character: 0x%x\n", *var_ptr);
-
-    answer = a + b + answer;
-
+    
+    answer = a + b + var1;
+    
     return answer;
 }
 
@@ -265,7 +265,17 @@ int function1(int a, int b) {
 </button>
 </div>
 
-Save this to a file and compile it with `gcc -g -o mem_segments mem_segments.c`. We'll run the program in gdb and look at its memory segments.
+When you compile and run the program, you should get the following output:
+
+```bash
+gr0k3d Desktop $ gcc -g -o mem_segments mem_segments.c
+gr0k3d Desktop $ ./mem_segments
+Hello, world!
+Letter A as Hex character: 0x41
+Result: 40
+```
+
+Take note of what the capital letter "A" looks like as a hexadecimal character. We'll need that information later.
 
 ## Code Segment
 
@@ -519,7 +529,7 @@ rbp            0x7fffffffddb0	0x7fffffffddb0
 
 ## Exploitation
 
-Now that we understand a program's memory layout, we can understand why the `buf` and `cookie` variables are 92 bytes apart instead of 81. With the understanding of the amount of space between the variables, we can then exploit the program.
+Now that we understand a program's memory layout, we can understand why the `buf` and `cookie` variables are 92 bytes apart instead of 81.
 
 In order to make computers more efficient, data needs to be aligned along "boundaries" so the CPU can easily move chunks of data into the register. If data isn't aligned properly on the stack, there will be increased overhead whenever alignment was needed. With limited memory space no longer an issue as it was in the early days of computing, computers can be more efficient if data is aligned on the stack. You can read more about alignment at this Stack Overflow [answer](https://stackoverflow.com/questions/49391001/why-does-system-v-amd64-abi-mandate-a-16-byte-stack-alignment).
 
@@ -527,7 +537,11 @@ When we look at the variables in stack1.c, we see we need 80 bytes for our buffe
 
 ![Boundary Alignment](/assets/images/exdev/stack1/boundary.jpg)
 
-Now that we know how far apart the variables are and that `gets()` does not limit user input, we can craft our buffer overflow. We'll need 92 bytes to reach the cookie variable, and then 4 additional bytes to overwrite it. We can use Perl to generate our string.
+Now that we know how far apart the variables are and that `gets()` does not limit user input, we can craft our buffer overflow. We'll need 92 bytes to reach the cookie variable, and then 4 additional bytes to overwrite it.
+
+If you recall from the `mem_segments.c` program, hexadecimal representation of the capital letter "A" is `0x41`. When we did the source code review, we saw that the `cookie` variable needed to equal `0x41424344`. Knowing that `0x41` is "A," you can safely assume `0x42` is "B," etc. If you ever need to check what the hex (and decimal) values are for any character, you can view the manual page for ascii characters on the command line with `man ascii`.
+
+Now that we know what our input needs to be, we can use Perl to generate our string:
 
 ```bash
 6r0k3d (master *) bin $ perl -e 'print "A"x92 . "ABCD"'
@@ -562,16 +576,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Breakpoint 1, main () at ./exercises/stack1.c:13
 13	    if (cookie == 0x41424344)
 
+(gdb) x/xw &cookie
+0x7fffffffddac:	0x44434241
+   
 (gdb) x/24xw &buf
 0x7fffffffdd50:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd60:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd70:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd80:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd90:	0x41414141	0x41414141	0x41414141	0x41414141
-0x7fffffffdda0:	0x41414141	0x41414141	0x41414141	0x44434241
-
-(gdb) x/xw &cookie
-0x7fffffffddac:	0x44434241
+0x7fffffffdda0:	0x41414141	0x41414141	0x41414141	0x44434241 
 ```
 
 We can see at breakpoint 1, cookie has to equal `0x41424344`. When we look at memory, we see the buffer has overflowed into cookie with `0x44434241`. This, as you may have guessed, is because of the endianness. We need to reverse the letters in our buffer.
