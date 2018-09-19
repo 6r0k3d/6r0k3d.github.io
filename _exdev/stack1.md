@@ -22,14 +22,14 @@ We'll start with a review of the source code to get an idea of what's happening 
 #include <stdio.h>
 
 int main() {
-int cookie;
-char buf[80];
+  int cookie;
+  char buf[80];
 
-printf("buf: %08x cookie: %08x\n", &buf, &cookie);
-gets(buf);
+  printf("buf: %08x cookie: %08x\n", &buf, &cookie);
+  gets(buf);
 
-if (cookie == 0x41424344)
-printf("you win!\n");
+  if (cookie == 0x41424344)
+  printf("you win!\n");
 }
 {% endhighlight %}
 
@@ -229,18 +229,18 @@ int main() {
     int var_a = 10;
     int var_b = 20;
     int result;
-    
+
     printf("Hello, world!\n");
-    
+
     ptr1 = malloc(100);
     ptr2 = malloc(mem_block);
-    
+
     free(ptr1);
     free(ptr2);
-    
+
     result = function1(var_a, var_b);
     printf("Result: %d\n", result);
-    
+
     return 0;
 }
 
@@ -251,11 +251,11 @@ int function1(int a, int b) {
     char var2[2] = "A";
     char *var_ptr;
     var_ptr = var2;
-    
+
     printf("Letter A as Hex character: 0x%x\n", *var_ptr);
-    
+
     answer = a + b + var1;
-    
+
     return answer;
 }
 
