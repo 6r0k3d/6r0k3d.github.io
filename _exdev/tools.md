@@ -252,6 +252,8 @@ You can see below a quick snapshot of the two:
 
 ```
 
+All of the commands above can generally be abbreviated with single letter shortcuts, eg, `inspect registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
+
 ## Perl
 
 In order to quickly experiment with input values, we need a way to efficiently send different values to a program. One effective tool for this is Perl.
