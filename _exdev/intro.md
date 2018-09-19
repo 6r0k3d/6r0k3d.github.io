@@ -8,7 +8,7 @@ github_comments_issueid: 2
 permalink: /exdev/intro.html
 date: 27 Aug 2018
 ---
-Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but all the challenges have all been ported to Geras Github page [here](https://github.com/gerasdf/InsecureProgramming).
+Gera's Insecure Programming challenges are Talos' recommended first step for learning exploit development. The challenges were made so you can learn how to exploit buffer overflows. They start off easy and build up to more complex problems. The Talos link points to an old web page that no longer exists, but the challenges have all been ported to Gera's Github page [here](https://github.com/gerasdf/InsecureProgramming).
 
 ## WARNING
 
@@ -16,7 +16,41 @@ The instructions below will put your computer into a vulnerable state. It turns 
 
 ## How to get started
 
-All you have to do is copy the code block below and run it in your console. It's always a good idea to understand what a piece of code is doing before you run it, so I've explained each piece below.
+All you have to do is copy the code block below and run it in your console. It's always a good idea to understand what  code is doing before you run it, so I've explained each piece following the block.
+
+<div class="code-container">
+{% highlight bash linenos %}
+git clone https://github.com/gerasdf/InsecureProgramming.git
+cd InsecureProgramming/
+cat << 'EOF' > ./compile.sh
+#!/bin/bash
+files=$(ls exercises);
+for file in $files; do
+    name=$(echo $file | cut -f 1 -d '.')
+
+    # check if directory exists, if not, make it
+    if [ ! -d ./bin ]; then
+        mkdir ./bin
+    fi
+    
+    # gcc -fno-stack-protector -z execstack -g -o   <filename>   <source code location>
+    # -fno-stack-protector : removes stack canaries
+    # -z execstack : allows execution of shellcode in stack injections
+    # -g : compiles with gdb debugging information
+    $(gcc -fno-stack-protector -g -o ./bin/$name ./exercises/$file)
+done
+EOF
+chmod +x compile.sh
+./compile.sh
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+    
+{% endhighlight %}
+
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
 
 First it clones the InsecureProgramming repository and changes into the newly created directory.
 
@@ -36,8 +70,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Program received signal SIGABRT, Aborted.
 ```
 
-
-
 The `chmod +x` command makes the `compile.sh` script executable.
 
 The last line of the code block turns off **A**ddress **S**pace **L**ayout **R**andomization (ASLR). This is a defensive measure implemented in the early 2000s that changes the location in memory that a program is loaded to every time the program runs. This makes exploitation more difficult since you can't hard code memory addresses. There are work arounds, but to get started, we can just disable it for now.
@@ -45,32 +77,6 @@ The last line of the code block turns off **A**ddress **S**pace **L**ayout **R**
 When you run the below code block, you are going to get a ton of `warning` and `note` messages from the compiler. You can safely ignore these, you'll have working executable binaries in your bin directory. If you'd like to know more about those messages, you can read the details [below](#compilation-warnings-and-notes).
 
 Once you've got your compiled executables, you're ready to get started!
-
-```bash
-git clone https://github.com/gerasdf/InsecureProgramming.git
-cd InsecureProgramming/
-cat << 'EOF' > ./compile.sh
-#!/bin/bash
-files=$(ls exercises);
-for file in $files; do
-    name=$(echo $file | cut -f 1 -d '.')
-
-    # check if directory exists, if not, make it
-    if [ ! -d ./bin ]; then
-        mkdir ./bin
-    fi
-
-    # gcc -fno-stack-protector -z execstack -g -o   <filename>   <source code location>
-    # -fno-stack-protector : removes stack canaries
-    # -z execstack : allows execution of shellcode in stack injections
-    # -g : compiles with gdb debugging information
-    $(gcc -fno-stack-protector -g -o ./bin/$name ./exercises/$file)
-done
-EOF
-chmod +x compile.sh
-./compile.sh
-echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-```
 
 ## Compilation Warnings and Notes
 
