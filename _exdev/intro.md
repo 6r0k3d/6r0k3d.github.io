@@ -16,7 +16,41 @@ The instructions below will put your computer into a vulnerable state. It turns 
 
 ## How to get started
 
-All you have to do is copy the code block below and run it in your console. It's always a good idea to understand what a piece of code is doing before you run it, so I've explained each piece below.
+All you have to do is copy the code block below and run it in your console. It's always a good idea to understand what  code is doing before you run it, so I've explained each piece following the block.
+
+<div class="code-container">
+{% highlight bash linenos %}
+git clone https://github.com/gerasdf/InsecureProgramming.git
+cd InsecureProgramming/
+cat << 'EOF' > ./compile.sh
+#!/bin/bash
+files=$(ls exercises);
+for file in $files; do
+    name=$(echo $file | cut -f 1 -d '.')
+
+    # check if directory exists, if not, make it
+    if [ ! -d ./bin ]; then
+        mkdir ./bin
+    fi
+    
+    # gcc -fno-stack-protector -z execstack -g -o   <filename>   <source code location>
+    # -fno-stack-protector : removes stack canaries
+    # -z execstack : allows execution of shellcode in stack injections
+    # -g : compiles with gdb debugging information
+    $(gcc -fno-stack-protector -g -o ./bin/$name ./exercises/$file)
+done
+EOF
+chmod +x compile.sh
+./compile.sh
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+    
+{% endhighlight %}
+
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
 
 First it clones the InsecureProgramming repository and changes into the newly created directory.
 
@@ -44,38 +78,6 @@ When you run the below code block, you are going to get a ton of `warning` and `
 
 Once you've got your compiled executables, you're ready to get started!
 
-<div class="code-container">
-{% highlight bash linenos %}
-git clone https://github.com/gerasdf/InsecureProgramming.git
-cd InsecureProgramming/
-cat << 'EOF' > ./compile.sh
-#!/bin/bash
-files=$(ls exercises);
-for file in $files; do
-    name=$(echo $file | cut -f 1 -d '.')
-
-    # check if directory exists, if not, make it
-    if [ ! -d ./bin ]; then
-        mkdir ./bin
-    fi
-
-    # gcc -fno-stack-protector -z execstack -g -o   <filename>   <source code location>
-    # -fno-stack-protector : removes stack canaries
-    # -z execstack : allows execution of shellcode in stack injections
-    # -g : compiles with gdb debugging information
-    $(gcc -fno-stack-protector -g -o ./bin/$name ./exercises/$file)
-done
-EOF
-chmod +x compile.sh
-./compile.sh
-echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-{% endhighlight %}
-
-<button class="cbtn" data-clipboard-target=".code">
-    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
-</button>
-
-</div>
 ## Compilation Warnings and Notes
 
 All those warnings and notes on the command prompt are just the compiler trying to protect you from problems that may arise. It's best practice to resolve these, but since this isn't production code, and we're just using them for exercises, you can ignore them. So long as you don't see any error messages, you'll be fine.
