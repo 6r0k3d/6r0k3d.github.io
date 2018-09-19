@@ -8,11 +8,12 @@ github_comments_issueid: 4
 permalink: /exdev/stack1.html
 date: 29 Aug 2018
 ---
-stack1.c is the first of the Stack Warmup Exercises. This guide will walk you through the buffer overflow process and explain the details behind what's happening. I ran all of the following on a 64-bit Ubuntu 16.04 box.
+stack1.c is the first of the Stack Warmup Exercises. This guide will walk you through the buffer overflow process and explain the details behind what's happening. I ran all of the following on a 64-bit Ubuntu 18.04 box.
 
 ## Source Code Review
 
-We'll start with a review of the source code to get an idea of what's happening and what we need to do.
+We'll start with a review of the source code to get an idea of what's happening and what we need to do. If you're coming here directly, checkout my [Getting Started](https://techcrucible.net/exdev/intro.html) walkthrough to get up and running.
+
 <div class="code-container">
 {% highlight c linenos %}
 // stack1-stdin.c                               
@@ -578,14 +579,14 @@ Breakpoint 1, main () at ./exercises/stack1.c:13
 
 (gdb) x/xw &cookie
 0x7fffffffddac:	0x44434241
-   
+
 (gdb) x/24xw &buf
 0x7fffffffdd50:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd60:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd70:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd80:	0x41414141	0x41414141	0x41414141	0x41414141
 0x7fffffffdd90:	0x41414141	0x41414141	0x41414141	0x41414141
-0x7fffffffdda0:	0x41414141	0x41414141	0x41414141	0x44434241 
+0x7fffffffdda0:	0x41414141	0x41414141	0x41414141	0x44434241
 ```
 
 We can see at breakpoint 1, cookie has to equal `0x41424344`. When we look at memory, we see the buffer has overflowed into cookie with `0x44434241`. This, as you may have guessed, is because of the endianness. We need to reverse the letters in our buffer.
