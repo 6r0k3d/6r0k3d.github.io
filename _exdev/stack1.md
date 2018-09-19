@@ -269,8 +269,8 @@ int function1(int a, int b) {
 When you compile and run the program, you should get the following output:
 
 ```bash
-gr0k3d Desktop $ gcc -g -o mem_segments mem_segments.c
-gr0k3d Desktop $ ./mem_segments
+6r0k3d Desktop $ gcc -g -o mem_segments mem_segments.c
+6r0k3d Desktop $ ./mem_segments
 Hello, world!
 Letter A as Hex character: 0x41
 Result: 40
