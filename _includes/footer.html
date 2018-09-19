@@ -1,7 +1,7 @@
 {% if page.previous %}
 <div class="previous">
   <div>
-    <h3><< Previous Article</h3>
+    <h4><< Previous Article</h4>
     <a class="btn truncate" href="{{ site.url }}{{ page.previous.url }}">{{ page.previous.link }}</a>
   </div>
 </div>
@@ -11,7 +11,7 @@
   <div>
     {% for collection in site.collections %}
       {% if page.id contains collection.label %}
-        <h3>Up</h3>
+        <h4>Up</h4>
         <a class="btn truncate" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}</a>
       {% endif %}
     {% endfor %}
@@ -21,7 +21,7 @@
 {% if page.next %}
 <div class="next">
     <div>
-    <h3>Next Article >></h3>
+    <h4>Next Article >></h4>
     <a class="btn truncate" href="{{ site.url }}{{ page.next.url }}">{{ page.next.link }}</a>
   </div>
 </div>
