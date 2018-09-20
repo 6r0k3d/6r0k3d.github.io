@@ -1,7 +1,7 @@
 ---
 title: Practice Environment
 description: Virtual Machine Configuration
-link: VM Build
+link: Environment Build
 author: gr0k
 layout: post
 github_comments_issueid: 6
@@ -17,14 +17,28 @@ Vagrant is a tool that allows you to easily configure, deploy, and provision vir
 
 ## Environment
 
-I built my guest as a VirtualBox VM on a Windows 10 host. I used Vagrant's [Ubuntu Bento Box](https://app.vagrantup.com/bento/boxes/ubuntu-18.04), a 64-bit Ubuntu 18.04 system. Vagrant provides a [machine repository](https://app.vagrantup.com/boxes/search) you can use to pull down systems if you want to try something else, but I can't guarantee you won't have and problems using a different environment.
+I built my guest VM on a Windows 10 host using [VirtualBox](https://www.virtualbox.org/) as the hypervisor. If you don't have that yet, you'll need to download it first. I used Vagrant's [Ubuntu Bento Box](https://app.vagrantup.com/bento/boxes/ubuntu-18.04), a 64-bit Ubuntu 18.04 system, as the guest machine. Vagrant provides a [machine repository](https://app.vagrantup.com/boxes/search) you can use to pull down systems if you want to try something else, but I can't guarantee you won't have problems using a different environment.
 
 ## Build
 
-Once you have Vagrant installed, all you have to do is save the following two code blocks to your system. Filenames matter, the first should be saved as `vagrantfile` and the second as `bootstrap.sh`.
+Once you have VirtualBox and Vagrant installed, all you have to do is clone my vagrant repo to get the configuration files.
+
+<div class="code-container">
+{% highlight bash linenos %}
+git clone https://github.com/6r0k3d/vagrant.git
+{% endhighlight %}
+
+<button class="cbtn" data-clipboard-target=".code">
+    <img src="/assets/images/clippy.svg" alt="Copy to clipboard" width="13">
+</button>
+
+</div>
+
+You could also just save the following two code blocks to your system. Filenames matter, the first should be saved as `vagrantfile` and the second as `bootstrap.sh`.
 
 <div class="code-container">
 {% highlight ruby linenos %}
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -56,6 +70,8 @@ end
 
 </div>
 
+Lines 4 to 8 get the box from Hashicorp's repository and sets the host name. You can change the host name to whatever you want if you'd like. Lines 10 to 20 are Virtualbox specific settings. `vb.gui` starts the VM user interface, `vb.memory`  sets the VMs RAM to 2 GB, and the last option sets the video memory to 12 GB, which will allow you to full screen the VM. Installation of Guest Additions is already handled for you, so you should be able to full screen your box, and copy/paste between guest/host (you'll still have to enable this setting under "Devices -> Shared Clipboard").
+
 <div class="code-container">
 {% highlight bash linenos %}
 #!/bin/bash
@@ -79,3 +95,13 @@ reboot
 </button>
 
 </div>
+
+Line 12 of the Vagrantfile calls the bootstrap provisioning script, `bootstrap.sh`. This script adds the user "6r0k3d" and sets the password to "password." You can change these to whatever you want if you wish. The remaining lines install software packages you'll need. I set it to pull the Ubuntu desktop, but you can change that to whatever graphical front end you want.
+
+## Creating the VM
+
+Once you're in the directory with your Vagrantfile and bootstrap.sh, all you have to do to create your machine is run `vagrant up` and within a few minutes you'll have a fully functioning environment to use.
+
+You can shutdown the VM with `vagrant halt`, suspend it (save its state) with `vagrant suspend`, or remove it entirely with `vagrant destroy`.
+
+And that's it. You now have a working environment to follow the Gera Walkthroughs.
