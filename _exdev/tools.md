@@ -36,7 +36,7 @@ If you specify a number with the command, `list <number>`, GDB will display the 
 If the program is not compiled with debugging information, you won't be able to view the source code in GDB or set breakpoints using line numbers:
 
 ```bash
-6r0k3d (master) bin $ gdb -q stack1
+gr0ked (master) bin $ gdb -q stack1
 Reading symbols from stack1...(no debugging symbols found)...done.
 (gdb) list
 No symbol table is loaded.  Use the "file" command.
@@ -252,7 +252,7 @@ You can see below a quick snapshot of the two:
 
 ```
 
-All of the commands above can generally be abbreviated with single letter shortcuts, eg, `inspect registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
+All of the commands above can generally be abbreviated with single letter shortcuts, eg, `info registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
 
 ## Perl
 
@@ -263,8 +263,8 @@ In order to quickly experiment with input values, we need a way to efficiently s
 To generate input to a program, we'll use the following command:
 
 ```bash
-6r0k3d (master) bin $ perl -e 'print "A"x4'
-AAAA6r0k3d (master) bin $
+gr0ked (master) bin $ perl -e 'print "A"x4'
+AAAAgr0ked (master) bin $
 ```
 
 We use the `-e` switch to indicate what follows is Perl code for the compiler to execute. We then wrap the code we want executed in single quotes.
@@ -274,8 +274,8 @@ For our examples, we'll be printing strings to fill buffers. The example above p
 We can concatenate output using the '`.`' character. This makes it easier to understand our exploit's pieces, as we can separate our overflow characters with the characters we'll use to take over a program.
 
 ```bash
-6r0k3d (master) bin $ perl -e 'print "A"x4 . "B"x4'
-AAAABBBB6r0k3d (master) bin $
+gr0ked (master) bin $ perl -e 'print "A"x4 . "B"x4'
+AAAABBBBgr0ked (master) bin $
 ```
 
 You can see how the four letter Bs get added to the end of the letter As. This just makes it easy to play with the input we'll send to the vulnerable program.
@@ -287,7 +287,7 @@ You'll notice the command prompt doesn't start on a new line after the output. T
 To get our input into the the Insecure Programming examples, you just pipe the output from Perl into the executable:
 
 ```bash
-6r0k3d (master) bin $ perl -e 'print "A"x100 . "B"x4' | ./stack1
+gr0ked (master) bin $ perl -e 'print "A"x100 . "B"x4' | ./stack1
 buf: 60919fd0 cookie: 6091a02c
 Segmentation fault (core dumped)
 ```

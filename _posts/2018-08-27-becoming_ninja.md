@@ -2,7 +2,7 @@
 title: Becoming a Technical Ninja
 author: gr0k
 layout: post
-github_comments_issueid: 4
+github_comments_issueid: 6
 date: 27 Aug 2018
 ---
 
