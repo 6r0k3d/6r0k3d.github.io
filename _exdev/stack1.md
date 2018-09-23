@@ -269,8 +269,8 @@ int function1(int a, int b) {
 When you compile and run the program, you should get the following output:
 
 ```bash
-gr0k3d Desktop $ gcc -g -o mem_segments mem_segments.c
-gr0k3d Desktop $ ./mem_segments
+6r0k3d Desktop $ gcc -g -o mem_segments mem_segments.c
+6r0k3d Desktop $ ./mem_segments
 Hello, world!
 Letter A as Hex character: 0x41
 Result: 40
@@ -378,6 +378,8 @@ rbp            0x7fffffffdde0	0x7fffffffdde0
 (gdb) x/xw $rbp-0x1c
 0x7fffffffddc4:	0x00000000
 ```
+
+As you examine the memory addresses of a program in GDB, one thing to keep in mind is these addresses are all virtual memory addresses. The operating system abstracts the computer's physical memory for each program, allowing each program to think it has all of the physical RAM available for its own use. Although two programs may show a variable is stored at the same memory address when viewed in GDB, the operating system translates the programs virtual memory address to the actual physical address in RAM. This translation process is beyond the scope of what's needed for these walkthroughs, so I won't go into it here.
 
 Now that we understand memory layout and stack frames we can discuss the function prologue and stack frame construction.
 

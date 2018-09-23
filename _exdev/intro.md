@@ -12,7 +12,7 @@ Gera's Insecure Programming challenges are Talos' recommended first step for lea
 
 ## WARNING
 
-The instructions below will put your computer into a vulnerable state. It turns off certain defensive measures and introduces vulnerable code. Don't do this on your home workstation. Build a VM. I'll have an environment build guide shortly.
+The instructions below will put your computer into a vulnerable state. It turns off certain defensive measures and introduces vulnerable code. Don't do this on your home workstation. Build a VM. If you want to automate the process, you can check out my [Environment Build Guide]({{ site.url}}/exdev/build.html).
 
 ## How to get started
 
@@ -32,7 +32,7 @@ for file in $files; do
     if [ ! -d ./bin ]; then
         mkdir ./bin
     fi
-    
+
     # gcc -fno-stack-protector -z execstack -g -o   <filename>   <source code location>
     # -fno-stack-protector : removes stack canaries
     # -z execstack : allows execution of shellcode in stack injections
@@ -43,7 +43,7 @@ EOF
 chmod +x compile.sh
 ./compile.sh
 echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-    
+
 {% endhighlight %}
 
 <button class="cbtn" data-clipboard-target=".code">
