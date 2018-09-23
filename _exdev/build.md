@@ -25,7 +25,7 @@ Once you have VirtualBox and Vagrant installed, all you have to do is clone my v
 
 <div class="code-container">
 {% highlight bash linenos %}
-git clone https://github.com/6r0k3d/vagrant.git
+git clone https://github.com/gr0ked/vagrant.git
 {% endhighlight %}
 
 <button class="cbtn" data-clipboard-target=".code">
@@ -77,9 +77,9 @@ Lines 4 to 8 get the box from Hashicorp's repository and sets the host name. You
 #!/bin/bash
 
 #User accounts
-useradd 6r0k3d -m -U -s /bin/bash
-usermod -aG sudo 6r0k3d
-echo "6r0k3d:password" | chpasswd
+useradd gr0ked -m -U -s /bin/bash
+usermod -aG sudo gr0ked
+echo "gr0ked:password" | chpasswd
 
 apt-get update -y
 export DEBIAN_FRONTEND=noninteractive
@@ -96,7 +96,7 @@ reboot
 
 </div>
 
-Line 12 of the Vagrantfile calls the bootstrap provisioning script, `bootstrap.sh`. This script adds the user "6r0k3d" and sets the password to "password." You can change these to whatever you want if you wish. The remaining lines install software packages you'll need. I set it to pull the Ubuntu desktop, but you can change that to whatever graphical front end you want.
+Line 12 of the Vagrantfile calls the bootstrap provisioning script, `bootstrap.sh`. This script adds the user "gr0ked" and sets the password to "password." You can change these to whatever you want if you wish. The remaining lines install software packages you'll need. I set it to pull the Ubuntu desktop, but you can change that to whatever graphical front end you want.
 
 ## Creating the VM
 
