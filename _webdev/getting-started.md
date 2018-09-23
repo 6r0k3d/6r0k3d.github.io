@@ -98,21 +98,21 @@ Once your environment is setup, to create a new Jekyll Project, simply run the f
 `jekyll new <whatever directory name you want>`
 
 ```bash
-6r0k3d Desktop $ jekyll new demo
-Running bundle install in /home/6r0k3d/Desktop/demo...
+gr0ked Desktop $ jekyll new demo
+Running bundle install in /home/gr0ked/Desktop/demo...
 .
 . <trimmed output>
 .
 Bundler: Bundle complete! 4 Gemfile dependencies, 29 gems now installed.
   Bundler: Use `bundle info [gemname]` to see where a bundled gem is installed.
-New jekyll site installed in /home/6r0k3d/Desktop/demo.
+New jekyll site installed in /home/gr0ked/Desktop/demo.
 ```
 
 This will create a new directory, named whatever you specified, with the following structure:
 
 ```bash
-6r0k3d Desktop $ cd demo
-6r0k3d demo $ ls -1
+gr0ked Desktop $ cd demo
+gr0ked demo $ ls -1
 404.html
 about.md
 _config.yml
@@ -146,14 +146,14 @@ gem "github-pages", group: :jekyll_plugins
 To see how the files in your project directory come together into a web page, run the command `bundle exec jekyll serve --watch` inside your Jekyll directory:
 
 ```bash
-6r0k3d demo $ bundle exec jekyll serve --watch
-Configuration file: /home/6r0k3d/Desktop/demo/_config.yml
-            Source: /home/6r0k3d/Desktop/demo
-       Destination: /home/6r0k3d/Desktop/demo/_site
+gr0ked demo $ bundle exec jekyll serve --watch
+Configuration file: /home/gr0ked/Desktop/demo/_config.yml
+            Source: /home/gr0ked/Desktop/demo
+       Destination: /home/gr0ked/Desktop/demo/_site
  Incremental build: disabled. Enable with --incremental
       Generating...
                     done in 0.452 seconds.
- Auto-regeneration: enabled for '/home/6r0k3d/Desktop/demo'
+ Auto-regeneration: enabled for '/home/gr0ked/Desktop/demo'
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
@@ -180,39 +180,39 @@ Once your remote repo is set up, you'll need to push your files to it. The steps
 # Run these in your Jekyll project directory
 
 # This initializes your directory as a git project
-6r0k3d demo $ git init
-Initialized empty Git repository in /home/6r0k3d/Desktop/demo/.git/
+gr0ked demo $ git init
+Initialized empty Git repository in /home/gr0ked/Desktop/demo/.git/
 
 # Configure user/email global settings for your repo. You will only need to do this the first time, and can make them whatever you want
-6r0k3d (master) demo $ git config --global user.email "email address"
-6r0k3d (master) demo $ git config --global user.name "name"
+gr0ked (master) demo $ git config --global user.email "email address"
+gr0ked (master) demo $ git config --global user.name "name"
 
 # Connect local repo to github
 # Your remote repository URL can be found as shown in the image below these instructions
-6r0k3d (master) demo $ git remote add origin <repository URL>
+gr0ked (master) demo $ git remote add origin <repository URL>
 
 # After connecting your remote repo, run a git pull to get any files stored there. If you followed the Github instructions to create the repo, you should have a README.md file on your remote. If you try and push your local files first, you'll run into errors
-6r0k3d (master) demo $ git pull origin master
+gr0ked (master) demo $ git pull origin master
 
 # Check your .gitignore file, which ensures unnecessary files don't get saved to your repo
 # These were automatically included, and shouldn't need to be edited
-6r0k3d (master #) demo $ cat .gitignore
+gr0ked (master #) demo $ cat .gitignore
 _site
 .sass-cache
 .jekyll-metadata
 
 # This stages all files to go to your remote repository
-6r0k3d (master #) demo $ git add *
+gr0ked (master #) demo $ git add *
 The following paths are ignored by one of your .gitignore files:
 _site
 Use -f if you really want to add them.
 
 # Include your gitignore file
 # If you are using the github command line modifications (see below), you'll notice the hashtag changes from '#' to '+', indicating you have changes ready to commit
-6r0k3d (master +) demo $ git add .gitignore
+gr0ked (master +) demo $ git add .gitignore
 
 # Use git status to check what files are staged for a commit
-6r0k3d (master +) demo $ git status
+gr0ked (master +) demo $ git status
 On branch master
 
 Initial commit
@@ -230,7 +230,7 @@ Changes to be committed:
 	new file:   index.md
 
 # Commit your changes to your local repository, adding your own commit message
-6r0k3d (master +) demo $ git commit -m "<commit message here>"
+gr0ked (master +) demo $ git commit -m "<commit message here>"
 [master (root-commit) aed50c4] <commit message here>
  8 files changed, 400 insertions(+)
  create mode 100644 .gitignore
@@ -243,7 +243,7 @@ Changes to be committed:
  create mode 100644 index.md
 
 # Push your local commit to your remote repository
-6r0k3d (master) demo $ git push -u origin master
+gr0ked (master) demo $ git push -u origin master
 ```
 
 From your repository, click the `Clone or download` button to get your repository URL.
@@ -298,17 +298,17 @@ The Github themes can be found [here](https://github.com/pages-themes), and the 
 When selecting a new theme make sure the front matter layout options for your pages are specified correctly. If you're using a Github theme, you can see the available layouts for your selected theme in their respective _layouts repository. For example, the hacker theme layouts are [here](https://github.com/pages-themes/hacker/tree/master/\_layouts). If you specify a layout that doesn't exist as part of your theme, you'll see an error message when you start your server locally as show below. To fix the Github Metadata error shown below, read the instructions [here](#6-no-github-api-authentication).
 
 ```bash
-6r0k3d (master *) 6r0k3d $ bundle exec jekyll serve --watch
-Configuration file: /home/6r0k3d/6r0k3d/_config.yml
-            Source: /home/6r0k3d/6r0k3d
-       Destination: /home/6r0k3d/6r0k3d/_site
+gr0ked (master *) gr0ked $ bundle exec jekyll serve --watch
+Configuration file: /home/gr0ked/gr0ked/_config.yml
+            Source: /home/gr0ked/gr0ked
+       Destination: /home/gr0ked/gr0ked/_site
  Incremental build: disabled. Enable with --incremental
       Generating...
    GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
      Build Warning: Layout 'page' requested in about.md does not exist.
      Build Warning: Layout 'home' requested in index.md does not exist.
                     done in 0.57 seconds.
- Auto-regeneration: enabled for '/home/6r0k3d/6r0k3d'
+ Auto-regeneration: enabled for '/home/gr0ked/gr0ked'
     Server address: http://127.0.0.1:4000
   Server running... press ctrl-c to stop.
 ```
@@ -370,7 +370,7 @@ Another gem issue I ran into was the error `Could not locate Gemfile or .bundle/
 While GH has excellent support for Jekyll, not every Jekyll component works with it, and for the components that do work, you need the correct versions. If you look at the GH Jekyll [Dependency Page](https://pages.github.com/versions/), you'll notice GH supports Jekyll 3.7.3 as of this writing. However when you installed Ruby and Jekyll, you got a newer Jekyll version.
 
 ```bash
-6r0k3d (master #) demo $ gem list jekyll
+gr0ked (master #) demo $ gem list jekyll
 *** LOCAL GEMS ***
 jekyll (3.8.3)
 ```
@@ -378,7 +378,7 @@ jekyll (3.8.3)
 When you try to activate the Github Gem, if you followed a guide and didn't read the Gemfile comments, you'll probably run into this:
 
 ```bash
-6r0k3d (master #) demo $ bundle install
+gr0ked (master #) demo $ bundle install
 The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
 Fetching gem metadata from https://rubygems.org/..........
 Fetching gem metadata from https://rubygems.org/.
