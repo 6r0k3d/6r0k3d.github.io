@@ -6,13 +6,11 @@ author: gr0k
 layout: post
 github_comments_issueid: 3
 permalink: /exdev/tools.html
-date: 27 Aug 2018
+date: 28 Aug 2018
 ---
 
 I wanted to include all the tools I used while working on these problems in once place as a common reference for individual walkthroughs rather than re-explain each tool in each post. I'll update this accordingly as I add new tools to it.
 
-* TOC
-{:toc}
 ## GNU Debugger (GDB)
 
 GDB lets us look at a program in memory. I cover a few common commands needed to get started, but this is by no means comprehensive list. The full documentation can be found [here](https://sourceware.org/gdb/onlinedocs/gdb/index.html#SEC_Contents).
@@ -38,13 +36,50 @@ If you specify a number with the command, `list <number>`, GDB will display the 
 If the program is not compiled with debugging information, you won't be able to view the source code in GDB or set breakpoints using line numbers:
 
 ```bash
-smith (master) bin $ gdb -q stack1
+6r0k3d (master) bin $ gdb -q stack1
 Reading symbols from stack1...(no debugging symbols found)...done.
 (gdb) list
 No symbol table is loaded.  Use the "file" command.
 (gdb) break 5
 No symbol table is loaded.  Use the "file" command.
 ```
+
+### Viewing Assembly Code
+
+To view the assembly code instructions the compiler generated from the source code, use the `disassemble` command. You can specify a memory address, a function name, or a register containing the address of a machine instruction.
+
+- By instruction memory address: `disassemble 0x00000000004005b6`
+- By function name: `disassemble main`
+- By register (instruction pointer):`disassemble $rip`
+
+GDB can also display mixed source and assembly with the `/s` modifier:
+
+```bash
+(gdb) disassemble /s main
+Dump of assembler code for function main:
+./exercises/stack1.c:
+6	int main() {
+   0x00000000004005b6 <+0>:	push   rbp
+   0x00000000004005b7 <+1>:	mov    rbp,rsp
+   0x00000000004005ba <+4>:	sub    rsp,0x60
+
+7	    int cookie;
+8	    char buf[80];
+9
+10	    printf("buf: %p cookie: %08x\n", &buf, &cookie);
+   0x00000000004005be <+8>:	lea    rdx,[rbp-0x4]
+   0x00000000004005c2 <+12>:	lea    rax,[rbp-0x60]
+   0x00000000004005c6 <+16>:	mov    rsi,rax
+   0x00000000004005c9 <+19>:	mov    edi,0x400694
+   0x00000000004005ce <+24>:	mov    eax,0x0
+   0x00000000004005d3 <+29>:	call   0x400480 <printf@plt>
+```
+
+The assembly instructions generated are shown as a block below the source code line(s) they were compiled from.
+
+### Clearing the Screen
+
+To clear the console, use `Ctrl+L`.
 
 ### Using Breakpoints
 
@@ -56,9 +91,9 @@ You have a few options to sets breakpoints:
 
 - By function: `break <function name>`
 
-- By address: `break <memory address>`
+- By address: `break *<memory address>`
 
-There are [others](http://www.delorie.com/gnu/docs/gdb/gdb_29.html), but these are what we'll use for now. 
+There are [others](http://www.delorie.com/gnu/docs/gdb/gdb_29.html), but these are what we'll use for now.
 
 To list your current breakpoints, use `info break`.
 
@@ -88,7 +123,7 @@ After hitting a breakpoint, there are a few ways to resume code execution. The t
 
 `Step` runs until it reaches the next line of source code for which there is debugging information. If the next line of code has a function call, step will stop execution inside this called function (assuming debugging information is available).
 
-`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function. 
+`Next` works much like `step`, but it will pause execution at the next line of the current function rather than pausing in a called function.
 
 To see additional control options, read more [here](https://sourceware.org/gdb/onlinedocs/gdb/Continuing-and-Stepping.html#Continuing-and-Stepping).
 
@@ -110,9 +145,20 @@ Output trimmed
 
 As shown above, GDB displays the registers in two columns. The first is the register data in raw format (hex), and the second is the register's natural format. The natural format varies by register, as explained in [this Stack Overflow answer](https://stackoverflow.com/a/27990499/1101802).
 
+### Examining Data
+
+We can examine data in the program with the `print` command. This will evaluate and display the value of an expression, and is useful for doing memory address math quickly.
+
+```bash
+(gdb) print 0xe396471c - 0xe39646c0
+$1 = 92
+```
+
+You can use it to examine all of the data in a program, there is additional documentation [here](ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_9.html) for how to use it, but for a better understanding of the data, I prefer to look at data by examining memory.
+
 ### Examining Memory
 
-In order to see what is stored in various variables or sections of a programs memory, we examine it with `x`. 
+In order to see what is stored in various variables or sections of a programs memory, we examine it with `x`.
 
 The syntax for the command is: `x/nfu <memory location>`
 
@@ -124,7 +170,7 @@ The syntax for the command is: `x/nfu <memory location>`
 
 **f** is the format to print memory, **x** for hex, **d** for decimal, **s** for string, and **i** for instruction (when printing assembly).
 
-The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable or function name, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`. 
+The memory location can be specified with a hex address or by using the *address of* operator, `&`, with a variable or function name, e.g. `&buf`. If you specify a memory location by using a register, the register name must be prefixed with a **$**, e.g. `$rip`.
 
 #### Examine 32 bytes starting from a Register
 
@@ -189,7 +235,7 @@ You can see below a quick snapshot of the two:
    0x4005ce <main+24>:	mov    eax,0x0
    0x4005d3 <main+29>:	call   0x400480 <printf@plt>
    0x4005d8 <main+34>:	lea    rax,[rbp-0x60]
-   
+
 # AT&T Syntax
 (gdb) set disassembly-flavor att
 (gdb) x/10i &main
@@ -206,43 +252,44 @@ You can see below a quick snapshot of the two:
 
 ```
 
+All of the commands above can generally be abbreviated with single letter shortcuts, eg, `inspect registers` becomes `i r` or `step` becomes `s`. I'll be using the abbreviated commands in my walkthroughs.
+
 ## Perl
 
-In order to quickly experiment with input values, we need a way to efficiently send different values to a program. One effective tool for this is Perl. 
+In order to quickly experiment with input values, we need a way to efficiently send different values to a program. One effective tool for this is Perl.
 
-### Input 
+### Input
 
 To generate input to a program, we'll use the following command:
 
 ```bash
-smith (master) bin $ perl -e 'print "A"x4'
-AAAAsmith (master) bin $ 
+6r0k3d (master) bin $ perl -e 'print "A"x4'
+AAAA6r0k3d (master) bin $
 ```
 
 We use the `-e` switch to indicate what follows is Perl code for the compiler to execute. We then wrap the code we want executed in single quotes.
 
-For our examples, we'll be printing strings to fill buffers. The example above prints out 4 letter As to the command line. 
+For our examples, we'll be printing strings to fill buffers. The example above prints out 4 letter As to the command line.
 
 We can concatenate output using the '`.`' character. This makes it easier to understand our exploit's pieces, as we can separate our overflow characters with the characters we'll use to take over a program.
 
 ```bash
-smith (master) bin $ perl -e 'print "A"x4 . "B"x4'
-AAAABBBBsmith (master) bin $ 
+6r0k3d (master) bin $ perl -e 'print "A"x4 . "B"x4'
+AAAABBBB6r0k3d (master) bin $
 ```
 
 You can see how the four letter Bs get added to the end of the letter As. This just makes it easy to play with the input we'll send to the vulnerable program.
 
-You'll notice the command prompt doesn't start on a new line after the output. This is because we didn't tell Perl to print a new-line character, '`\n`'. If we add that to the end of the string, the command prompt will start on a new line, but unless we need to send the new line to the program we're exploiting, we'll skip that. 
+You'll notice the command prompt doesn't start on a new line after the output. This is because we didn't tell Perl to print a new-line character, '`\n`'. If we add that to the end of the string, the command prompt will start on a new line, but unless we need to send the new line to the program we're exploiting, we'll skip that.
 
 ### Sending Data
 
 To get our input into the the Insecure Programming examples, you just pipe the output from Perl into the executable:
 
 ```bash
-smith (master) bin $ perl -e 'print "A"x100 . "B"x4' | ./stack1
+6r0k3d (master) bin $ perl -e 'print "A"x100 . "B"x4' | ./stack1
 buf: 60919fd0 cookie: 6091a02c
 Segmentation fault (core dumped)
 ```
 
 The program runs, using the data we created with Perl as its input.
-

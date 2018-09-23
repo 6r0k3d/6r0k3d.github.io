@@ -6,12 +6,12 @@ permalink: /about/
 ---
 
 ```bash
-smith ~ $ ./hack -h
+gr0ked ~ $ ./hack -h
 usage: ./hack [OPTION]...
 Understanding through doing
 ```
 
-Interested in learning about computer security? You've come to the right place. 
+Interested in learning about computer security? You've come to the right place.
 
 Demand for those with the skills necessary to secure an organization's systems is at an all time high. This site aims to provide the reader with a working understanding of what it takes to do that.
 

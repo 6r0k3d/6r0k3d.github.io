@@ -1,3 +1,7 @@
+---
+nav: nav_default.html
+---
+
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
@@ -6,38 +10,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=A075eA8OK6">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=A075eA8OK6">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=A075eA8OK6">
+    <link rel="manifest" href="/site.webmanifest?v=A075eA8OK6">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=A075eA8OK6" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon.ico?v=A075eA8OK6">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     {% include cookieconsent.html %}
     {% if jekyll.environment == 'production' %}
         {% include analytics.html %}
     {% endif %}
 
     {% seo %}
+    <meta property="og:image" content="/assets/images/share.jpg" />
+
+    <link href="/assets/css/jquery-ui.css" rel="stylesheet">
   </head>
 
   <body>
-    {%- include header.html -%}
 
-    <div id="main_flex">
+    <header>
+      {% include header.html %}
+    </header>
 
-      <nav id="main_nav">
-        <h1 style="font-size:30px">Guides</h1>
-        {% for collection in site.collections %}
-          {% if collection.label != "posts" %}
-            <ul>
-              <li><h2><a class="header_link" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}</a></h2></li>
-            </ul>
-          {% endif %}
-        {% endfor %}
-      </nav>
+    <nav id="main_nav" class="ui-widget-resizable">
+      {% include {{ layout.nav }} %}
+    </nav>
 
-      <div id="main_content">
-        <section id="body-container">
-          {{ content }}
-        </section>
-      </div>
+    <article>
+      {{ content }}
+    </article>
 
-    </div>
+    <footer>
+      {% include footer.html %}
+    </footer>
 
-    {% include footer.html %}
   </body>
 </html>
