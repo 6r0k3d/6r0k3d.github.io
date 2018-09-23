@@ -4,7 +4,7 @@ description: Virtual Machine Configuration
 link: Environment Build
 author: gr0k
 layout: post
-github_comments_issueid: 6
+github_comments_issueid: 5
 permalink: /exdev/build.html
 date: 26 Aug  2018
 ---
