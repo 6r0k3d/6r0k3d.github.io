@@ -71,9 +71,10 @@ article {
   padding: 10px 100px 5px 20px;
 }
 
-div.home:last-child hr {
+div.home hr:last-child {
   display: none;
 }
+
 img {
   max-width: 100%;
 }
@@ -322,6 +323,7 @@ td {
 }
 
 hr {
+  padding: 5px 0px;
   height: 0;
   border: 0;
   border-bottom: 1px dashed #b5e853;
