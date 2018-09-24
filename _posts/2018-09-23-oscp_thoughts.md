@@ -12,22 +12,42 @@ Offensive Security's training program is [Penetration Testing with Kali](https:/
 
 ## Sign Up
 
-One of OSCPs bonuses as a certification is its good for life. Pass the exam, and you're certified. No maintenance fees. No membership fees. No re-certification. The value for getting certified is unmatched. 30 days of lab time costs, $800, which *includes* the cost of the exam. The 60 and 90 day options, as well as the lab extensions, are also all reasonably priced, making it relatively accessible to pay out of pocket. In comparison, other week long training programs can start around 3 to $5,000. And if you fail and want to take the exam again, the test itself only costs $60 to retake.
+One of OSCPs bonuses as a certification is its good for life. Pass the exam, and you're certified. No maintenance fees. No membership fees. No re-certification. The value for getting certified is unmatched. 30 days of lab time costs $800 which *includes* the cost of the exam. The 60 and 90 day options, as well as the lab extensions, are also all reasonably priced, making it relatively accessible to pay out of pocket. In comparison, other week long training programs can start around $3-$5,000 or more, depending on the course. And if you fail and want to take the OSCP exam again, the test itself only costs $60 to retake.
 
-To take OSCP, you must sign up for PWK, and should expect about two weeks to a month from signing up to being able to start. The labs only allow a certain number of people to be active at a time, so you won't be able to start immediately after signing up. The wait time for starting doesn't apply if you're extending your lab time. You can start almost immediately after you extend your time.
+To take OSCP, you must sign up for PWK. It'll take about two to four weeks from signing up to being able to start. The labs only allow a certain number of people to be active at a time, so you won't be able to start immediately after signing up. The wait time for starting doesn't apply if you're extending your lab time. You can start almost immediately after paying.
 
-You can also only sign up with an email account from a domain owned by you or someone you work for (eg company or university email), so keep that in mind if you don't have a work or school email you can easily use, you'll have to set up your own domain.
+You can only sign up with an email account from a domain owned by you or someone you work for (eg company or university email), so keep that in mind if you don't have a work or school email you can easily use, you'll have to set up your own domain.
 
 ## Lab Time
 
-Once you're signed up, you;; get a lab connection pack, etc etc etc
+Once you're signed up, you'll get your lab connection pack and access to the training materials: some videos and the work book.
 
-### Focus
+If you're new to pen testing, I'd work through the examples in the book and document your answers as you go. If you're starting OSCP after coming from [Hack the Box](https://www.hackthebox.eu/) or have some other background experience, I'd recommend just jumping straight into the labs and save the examples for the last week or so of your lab time. If you submit your exercise answers and lab work with your exam report it's worth some extra points which can be helpful if you're on the pass/fail border line. Whether you do the exercises at the beginning or end, it's worth taking the time to download the OSCP report template and document your lab work as you go. It'll save you from having to compile your answers into it at the end. 
+
+It's worth noting that not all of the exercises in the book are listed in the table of contents, so if you're using the contents as a way to track all the exercises you need to submit for your lab report, you're going to miss some. I was using the contents to track my exercises and I realized too close to the end of my lab time I was missing exercises and didn't finish them all.
+
+### Training Focus
+
+The main question I asked everyone when I started was how many and which boxes should I complete before I tried to take the exam. Having taken it now, my own thoughts are that there isn't really a right answer. If you've only exploited five boxes, that's probably not enough, but once you get to ten or so, you've probably got enough of the basics down to try taking the exam. I'd completed 35 boxes when I tested, including Humble, Pain, and Sufferance, and I got stuck hard on the exam all the same. It's less about how many boxes you've rooted and more about learning the methodology to go from reconnaissance to exploitation. You've got to be able to quickly identify what the most likely vulnerability is, and then find and customize the appropriate exploit. Just as important is learning to identify when you're too far down a rabbit hole. Being able to recognize when you've gone down the wrong path and deciding you need to focus on something else is a critical skill.
 
 ### Note taking
 
-### Report
+I used [Keep Note](http://keepnote.org/) which comes default with the Kali distribution. It was easy to keep my notes individualized by box. It's designed to feel like an email application, with notebooks and pages on the left hand side, and the notes themselves in the center pane. One thing it's nice for is easily integrating screen shots, which you'll need as proof you've completed boxes. When I took the exam I liked having a main page for each box, documenting the steps and commands I took to exploit it. Then I'd have sub-pages where I kept the outputs from my scans and general thoughts on what attack vectors I might be able to apply as I was doing recon. Another note taking tool I've heard recommended is [Dradis](https://dradisframework.com/ce/). I haven't tried it yet but I know some folks who swear by it.
+
+Regardless of your note taking platform, the important thing is *how* you take and organize your notes. For an eye-opening insight into your note quality, go through your notes step by step to re-exploit a box a week or so after you've rooted it. You'll likely find you don't remember the exact steps you need, even if you remember the general process. And you'll probably realize you're missing a key command you used to finally gain access. There were a few boxes that I had to exploit from scratch again because I got lazy and my note taking on them was so awful. Don't wait until the exam to figure out how you want to take notes and integrate them into your report. While you have 24 hours after the exam to write your report, you don't have access to the lab, and if you miss something you need in your notes, you won't be able to get that screen shot after the fact.
 
 ## Exam
 
+If you've signed up for the 60 or 90 day lab packs, I recommend signing up to take the exam at your half way point for a few reasons. First, if you wait to schedule your exam when your ready, you'll have to wait an extra week or two (or more!) depending on when test times are available. Picking a month in advance allows you to pick the time you want. It will also force you to put time into the labs. It's harder to put off studying when you know you have the exam in a month. 
+
+Second, if you happen to fail the exam on your first go, you'll still have plenty of lab time left so you can re-focus your efforts. You'll have a better idea of what to expect, and you can fine tune your weak spots. Once you've taken the exam once, you'll be familiar with the test taking procedures, so your second time around will be less stressful and you can focus solely on the exam content. And who knows, maybe you'll pass on your first go, and you'll have extra time to just play in the lab environment.
+
+When you're taking the exam, energy management is essential. If you end up having to use the full 24 hours, you're going to want to schedule in some time to take a break and get some sleep. It's a lot easier to think through the problem when you've walked away from it for awhile. Have some food and drinks stocked up and ready to go (or just get a pizza delivered). Just know when you've been sinking too much time into a problem and shift gears to give yourself a break and stay fresh.
+
+Knowing how you're going to write your report before you take the exam is super important, as it will determine what information you need to collect as you go. Like I said before, you don't want to end the exam and realize you don't have that final proof screen shot. 
+
 ## Resources
+
+There are a lot of great resources that exist teaching you how to use your available tools, especially metasploit, msfvenom, and the [Exploit Database](https://www.exploit-db.com/). There are some great tools available to help you do reconnaissance and improve your shell. 
+
+The biggest shortfall with a lot of these resources is you have to figure out how and when to apply them in the right situation. And the only way you can really learn that is through a lot of trial and error in the labs. 
