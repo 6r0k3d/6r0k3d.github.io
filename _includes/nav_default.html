@@ -1,0 +1,8 @@
+<h3>Guides</h3>
+{% for collection in site.collections %}
+  {% if collection.label != "posts" %}
+    <ul>
+      <li><h4><a class="header_link" href="{{ site.url }}/{{ collection.label }}">{{ collection.link }}</a></h4></li>
+    </ul>
+  {% endif %}
+{% endfor %}

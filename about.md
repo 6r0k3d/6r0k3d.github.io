@@ -6,7 +6,7 @@ permalink: /about/
 ---
 
 ```bash
-smith ~ $ ./hack -h
+gr0ked ~ $ ./hack -h
 usage: ./hack [OPTION]...
 Understanding through doing
 ```
