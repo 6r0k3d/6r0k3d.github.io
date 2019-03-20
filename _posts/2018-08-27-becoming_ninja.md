@@ -9,7 +9,6 @@ date: 27 Aug 2018
 Some time ago a friend showed me Talos Intelligence Group's blog post [How do I become a Ninja?](https://blog.talosintelligence.com/2009/07/how-do-i-become-ninja.html). It's a great reference if you are already familiar with exploitation basics, but if you're just getting started, it doesn't provide much in the way of direction, which can be super frustrating for someone looking to learn.
 
 I wanted to build a guide from start to finish on how to work through these exercises for someone who's looking to get into the security field.
-
 <!--more-->
 
 
