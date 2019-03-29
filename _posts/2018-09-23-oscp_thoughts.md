@@ -1,9 +1,10 @@
 ---
 title: Thoughts on OSCP
+link: Thoughts on OSCP
 author: gr0k
 layout: post
 github_comments_issueid: 7
-date: 23 Sept 2018
+date: 23 Sept 2018 edit 29 March 2019
 ---
 
 About six months back I took my first stab at earning my Offensive Security Certified Professional certification, or OSCP. I failed hard on my first go, and as I prepare to prep for the exam again I wanted to document some lessons learned from my first attempt.
