@@ -1,5 +1,6 @@
 ---
 title: Becoming a Technical Ninja
+link: How to Become Ninja
 author: gr0k
 layout: post
 github_comments_issueid: 6
