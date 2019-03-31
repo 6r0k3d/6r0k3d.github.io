@@ -1,15 +1,14 @@
 - image: <a target="_blank"  href="https://www.amazon.com/gp/product/1593271441/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1593271441&linkCode=as2&tag=gr0k3d-20&linkId=31301d1e8fa9ef4f9d20bb1107bb3eac"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=1593271441&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=gr0k3d-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=gr0k3d-20&l=am2&o=1&a=1593271441" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   desc: >-
-    The first book I started with, <a href="https://amzn.to/2HLWfMT">Hacking: The Art of Exploitation</a>,
-    is a perfect primer on software exploitation. It teaches you everything you need as it goes, including
+    <a href="https://amzn.to/2HLWfMT">Hacking: The Art of Exploitation</a>
+    is the perfect primer on software exploitation. It teaches you everything you need as it goes, including
     the basics of C and Assembly programming, using the GNU Debugger, and the coding flaws hackers use to
     exploit software. If you're just getting started, this book is essential.
 
 
 - image: <a target="_blank"  href="https://www.amazon.com/gp/product/0470497025/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0470497025&linkCode=as2&tag=gr0k3d-20&linkId=7486cf58aa64f4816ee0d4b9eb0811df"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=0470497025&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=gr0k3d-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=gr0k3d-20&l=am2&o=1&a=0470497025" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   desc: >-
-    After learning about shellcode, I wanted to better understand assembly.
-    <a href="https://amzn.to/2I2x9bZ">Assembly Language Step By Step</a> is the perfect resource for this.
+    <a href="https://amzn.to/2I2x9bZ">Assembly Language Step By Step</a> is  a great resource for learning Assembly.
     The author explains the fundamentals of computer internals and how to iteract with them through assembly.
     This book gives you an in depth look at how memory works, which is crucial when working with your own
     exploits. When you're done, you'll have the skills to both read and write your own shellcode.
@@ -29,8 +28,9 @@
 
 - image: <a target="_blank"  href="https://www.amazon.com/gp/product/144962636X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=144962636X&linkCode=as2&tag=gr0k3d-20&linkId=28e529024413e505ef5449a251929c71"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=144962636X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=gr0k3d-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=gr0k3d-20&l=am2&o=1&a=144962636X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   desc: >-
-    The first four books are what made the <a href="https://amzn.to/2V3KmF5">Rootkit Arsenal</a> accessible
-    for me. No better way to learn how to detect the worst of malware than by learning how it works firsthand.
+    <a href="https://amzn.to/2V3KmF5">Rootkit Arsenal</a> Because there is no better way to learn
+    how to detect the worst of malware than by learning how it works firsthand. The four books
+    above made the material in this book accessible for me, wouldn't recommend starting with this one. 
 
 - image: <a target="_blank"  href="https://www.amazon.com/gp/product/1593272901/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1593272901&linkCode=as2&tag=gr0k3d-20&linkId=bd4a15bcbacb5641de9cb5df9eb7cac9"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=1593272901&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=gr0k3d-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=gr0k3d-20&l=am2&o=1&a=1593272901" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   desc: >-
@@ -49,13 +49,13 @@
   desc: >-
     Picked this up from John Strand after his SANS Active Defense, Offensive Countermeasures class. <a href="https://amzn.to/2FJ4QO6">Offensive Countermeasures</a>
     is all about giving yourself as a defender as many ways as possible to catch adversaries who target
-    your network. It includes lots of ways to leave all kinds of surprises for those unwanted guests trying
-    to poke around your network.
+    your network. It teaches you how to setup tripwires in your environment that warn you when someone
+    has gained access to something they shouldn't.
 
 - image: <a target="_blank"  href="https://www.amazon.com/gp/product/0735611319/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0735611319&linkCode=as2&tag=gr0k3d-20&linkId=87efa5147e463ada6da6e966ec65ce5b"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=0735611319&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL160_&tag=gr0k3d-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=gr0k3d-20&l=am2&o=1&a=0735611319" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
   desc: >-
-    <a href="https://amzn.to/2WDcj7j">CODE</a> was a fun book I got for Christmas that explains step
-    by step how today's computers came to be. It begins with how circuits work, follwed by how circuits
-    can allow for the expression of logic, and how this allows for implementation of digital computers.
-    It's not at all security related, but if you're interested in a fun read on how the system we use
+    <a href="https://amzn.to/2WDcj7j">CODE</a> is a fun book I got for Christmas that explains step
+    by step how today's computers came to be. It begins with how circuits work, followed by how you can
+    combine them to express logic, and how this allows for the implementation of digital computers.
+    It's not at all security related, but if you're interested in a fun read on how the systems we use
     today came to be, this is the book you want.
