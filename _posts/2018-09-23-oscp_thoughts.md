@@ -1,9 +1,11 @@
 ---
 title: Thoughts on OSCP
+link: Thoughts on OSCP
 author: gr0k
 layout: post
 github_comments_issueid: 7
 date: 23 Sept 2018
+edit: 30 Mar 2019
 ---
 
 About six months back I took my first stab at earning my Offensive Security Certified Professional certification, or OSCP. I failed hard on my first go, and as I prepare to prep for the exam again I wanted to document some lessons learned from my first attempt.
@@ -32,7 +34,7 @@ The main question I asked everyone when I started was how many and which boxes s
 
 ### Note taking
 
-I used [Keep Note](http://keepnote.org/) which comes default with the Kali distribution. It was easy to keep my notes individualized by box. It's designed to feel like an email application, with notebooks and pages on the left hand side, and the notes themselves in the center pane. One thing it's nice for is easily integrating screen shots, which you'll need as proof you've completed boxes. When I took the exam I liked having a main page for each box, documenting the steps and commands I took to exploit it. Then I'd have sub-pages where I kept the outputs from my scans and general thoughts on what attack vectors I might be able to apply as I was doing recon. Another note taking tool I've heard recommended is [Dradis](https://dradisframework.com/ce/). I haven't tried it yet but I know some folks who swear by it.
+~~I used [Keep Note](http://keepnote.org/) which comes default with the Kali distribution. It was easy to keep my notes individualized by box. It's designed to feel like an email application, with notebooks and pages on the left hand side, and the notes themselves in the center pane. One thing it's nice for is easily integrating screen shots, which you'll need as proof you've completed boxes.~~ Keep Note is deprecated. [Cherrytree](https://www.giuspen.com/cherrytree/) is a great alternative that can import old Keep Note notebooks. When I took the exam I liked having a main page for each box, documenting the steps and commands I took to exploit it. Then I'd have sub-pages where I kept the outputs from my scans and general thoughts on what attack vectors I might be able to apply as I was doing recon. Another note taking tool I've heard recommended is [Dradis](https://dradisframework.com/ce/). I haven't tried it yet but I know some folks who swear by it.
 
 Regardless of your note taking platform, the important thing is *how* you take and organize your notes. For an eye-opening insight into your note quality, go through your notes step by step to re-exploit a box a week or so after you've rooted it. You'll likely find you don't remember the exact steps you need, even if you remember the general process. And you'll probably realize you're missing a key command you used to finally gain access. There were a few boxes that I had to exploit from scratch again because I got lazy and my note taking on them was so awful. Don't wait until the exam to figure out how you want to take notes and integrate them into your report. While you have 24 hours after the exam to write your report, you don't have access to the lab, and if you miss something you need in your notes, you won't be able to get that screen shot after the fact.
 

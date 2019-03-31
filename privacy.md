@@ -5,6 +5,10 @@ description: How hack -h protects your personal information
 permalink: /privacy/
 ---
 
+## Amazon
+
+{{ site.url}} is part of the Amazon affiliate network. This means I get referral fees if you use the links on my [Resources]({{ site.url }}/resources/) page. For an understanding of the data Amazon collects, here is their [Privacy Notice](https://www.amazon.com/gp/help/customer/display.html?nodeId=468496).
+
 ## Google Analytics
 
 I use a tool called [Google Analytics](https://marketingplatform.google.com/about/analytics/) to collect information about use of my site. Google Analytics collects information such as how often users visit my site, what pages they visit when they do so, and what other sites they used prior to coming to my site. I use the information I get from Google Analytics to track outreach and make site improvements. I track usage with Google Analytics' `gtag.js`. This sets a cookie on your computer called "\_ga," which is used to distinguish unique users. This cookie consists of four fields, none of which contain and Personally Identifiable Information (PII). You can read more about these fields in the answer to [this question](https://stackoverflow.com/questions/16102436/what-are-the-values-in-ga-cookie) on Stack Overflow.
