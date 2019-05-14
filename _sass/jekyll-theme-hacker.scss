@@ -312,7 +312,7 @@ code.highlighter-rouge {
 }
 
 table {
-  width: 100%;
+  //width: 100%;
   margin: 0 0 20px 0;
 }
 
@@ -372,6 +372,11 @@ hr {
   background: url("../images/blacktocat.png") 0 0 no-repeat;
 }
 
+
+.btn img{
+  vertical-align: middle;
+}
+
 /* Links
    a, a:hover, a:visited
 */
@@ -403,4 +408,13 @@ a {
 
 .cf {
   zoom:1;
+}
+
+/*
+  Disclosure
+ */
+.disclosure {
+  font-size: .8rem;
+  padding: 10px;
+  border: 1px dashed $conifer;
 }
