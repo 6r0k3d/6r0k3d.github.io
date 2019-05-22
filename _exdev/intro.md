@@ -37,7 +37,7 @@ for file in $files; do
     # -fno-stack-protector : removes stack canaries
     # -z execstack : allows execution of shellcode in stack injections
     # -g : compiles with gdb debugging information
-    $(gcc -fno-stack-protector -g -o ./bin/$name ./exercises/$file)
+    $(gcc -fno-stack-protector -z execstack -g -o ./bin/$name ./exercises/$file)
 done
 EOF
 chmod +x compile.sh
