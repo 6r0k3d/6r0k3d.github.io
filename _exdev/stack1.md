@@ -12,7 +12,7 @@ stack1.c is the first of the Stack Warmup Exercises. This guide will walk you th
 
 ## Source Code Review
 
-We'll start with a review of the source code to get an idea of what's happening and what we need to do. If you're coming here directly, checkout my [Getting Started](https://techcrucible.net/exdev/intro.html) walkthrough to get up and running.
+We'll start with a review of the source code to get an idea of what's happening and what we need to do. If you're coming here directly, check out my [Getting Started]({{ site.url }}/exdev/intro.html) walkthrough to get up and running.
 
 <div class="code-container">
 {% highlight c linenos %}
@@ -41,7 +41,7 @@ int main() {
 
 First two variables are declared, `cookie` and `buf`. `cookie` is defined as an int variable, and `buf` is an array of 80 characters.
 
-Line 10 has a print statement with two format parameters. Format parameters are written with a percent sign and a letter which specifies how the program should display the variable. In this case, the `x` means to print as hex. The numbers after the `%` control the width of the output. The variables the program prints are included after the output string. In the C programming language, `&` is the 'address-of' operator, and means get the memory address for the variable listed. This line will print out the memory address for the `buf` and `cookie` variables. Wikipedia has more information about C printfformat strings [here](https://en.wikipedia.org/wiki/Printf_format_string).
+Line 10 has a print statement with two format parameters. Format parameters are written with a percent sign and a letter which specifies how the program should display the variable. In this case, the `x` means to print as hex. The numbers after the `%` control the width of the output. The variables the program prints are included after the output string. In the C programming language, `&` is the 'address-of' operator, and means get the memory address for the variable listed. This line will print out the memory address for the `buf` and `cookie` variables. Wikipedia has more information about C printf format strings [here](https://en.wikipedia.org/wiki/Printf_format_string).
 
 Line 11 calls the `gets` function. From the [Open Group Library](http://pubs.opengroup.org/onlinepubs/009695399/functions/gets.html), the `gets` function operates as follows:
 
