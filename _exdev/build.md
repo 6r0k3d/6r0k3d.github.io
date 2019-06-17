@@ -25,7 +25,7 @@ Once you have VirtualBox and Vagrant installed, all you have to do is clone my v
 
 <div class="code-container">
 {% highlight bash linenos %}
-git clone https://github.com/6r0ked/vagrant.git
+git clone https://github.com/6r0k3d/vagrant.git
 {% endhighlight %}
 
 <button class="cbtn" data-clipboard-target=".code">
