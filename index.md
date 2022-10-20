@@ -5,5 +5,3 @@
 layout: home
 title: Home
 ---
-
-HELLO!
